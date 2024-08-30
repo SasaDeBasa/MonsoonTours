@@ -7,20 +7,24 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
-        body {
+       body {
             background-color: #333;
             color: white;
         }
+
         .navbar {
             background-color: rgba(0, 0, 0, 0.7);
         }
+
         .navbar-brand {
             font-weight: bold;
         }
+
         .navbar-nav .nav-link {
             color: white !important;
             font-size: 18px;
         }
+
         .hero-section {
             background: url('assets/pics/hero.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -31,48 +35,59 @@
             text-align: center;
             color: white;
         }
+
         .hero-section .content {
             background-color: rgba(0, 0, 0, 0.5);
             padding: 40px;
             border-radius: 10px;
         }
+
         .section-dark {
             background-color: #222;
             padding: 60px 0;
-        }
-        .itinerary-card {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            color: white;
-        }
-        .events-section {
-            background-color: #333;
-            padding: 60px 0;
-            text-align: center;
-        }
-        .events-section h2 {
-            margin-bottom: 40px;
-        }
-        .itinerary-wrapper {
-            overflow: hidden;
-            position: relative;
-        }
-        #itinerary-container {
-            display: flex;
-            transition: transform 0.5s ease;
         }
 
         .itinerary-card {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin-right: 20px; /* Space between cards */
             color: white;
             flex: 0 0 auto; /* Ensure each card takes up its space */
         }
-        
+
+        /* Itinerary Section */
+        .itinerary-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden; /* Hide vertical scroll */
+            position: relative;
+            white-space: nowrap; /* Prevent wrapping of the cards */
+        }
+
+        /* Scrollbar Styles */
+        .itinerary-wrapper::-webkit-scrollbar {
+            height: 8px; /* Adjust height of scrollbar */
+        }
+
+        .itinerary-wrapper::-webkit-scrollbar-thumb {
+            background-color: #555; /* Dark color for the scrollbar */
+            border-radius: 4px;
+        }
+
+        .itinerary-wrapper::-webkit-scrollbar-track {
+            background: #333; /* Dark background for the scrollbar track */
+        }
+
+        .events-section {
+            background-color: #333;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .events-section h2 {
+            margin-bottom: 40px;
+        }
+
     </style>
 </head>
 <body>
@@ -102,98 +117,63 @@
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </div>
     </div>
-
-    <!-- Itinerary Section -->
-     <!-- Itinerary Section -->
+    <!-- Itinerary section -->
     <div class="section-dark">
-        <div class="container position-relative">
-            <div class="row">
-                <!-- Left Scroll Button -->
-                <button class="btn btn-dark position-absolute left-scroll" style="z-index: 2; left: 0; top: 50%; transform: translateY(-50%);">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="col-12">
-                    <div class="itinerary-wrapper">
-                        <div class="row flex-row flex-nowrap overflow-hidden" id="itinerary-container">
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="itinerary-card">
-                                    <h5>Itinerary #1</h5>
-                                    <p>Duration: xxxxx</p>
-                                    <p>Days: xxxxx</p>
-                                    <p>No. of Locations: xxxxx</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="itinerary-card">
-                                    <h5>Itinerary #2</h5>
-                                    <p>Duration: xxxxx</p>
-                                    <p>Days: xxxxx</p>
-                                    <p>No. of Locations: xxxxx</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="itinerary-card">
-                                    <h5>Itinerary #3</h5>
-                                    <p>Duration: xxxxx</p>
-                                    <p>Days: xxxxx</p>
-                                    <p>No. of Locations: xxxxx</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="itinerary-card">
-                                    <h5>Itinerary #4</h5>
-                                    <p>Duration: xxxxx</p>
-                                    <p>Days: xxxxx</p>
-                                    <p>No. of Locations: xxxxx</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="itinerary-card">
-                                    <h5>Itinerary #5</h5>
-                                    <p>Duration: xxxxx</p>
-                                    <p>Days: xxxxx</p>
-                                    <p>No. of Locations: xxxxx</p>
-                                </div>
-                            </div>
+        <div class="container">
+            <div class="itinerary-wrapper">
+                <div class="row flex-row flex-nowrap overflow-auto" id="itinerary-container">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="itinerary-card">
+                            <h5>Itinerary #1</h5>
+                            <p>Duration: xxxxx</p>
+                            <p>Days: xxxxx</p>
+                            <p>No. of Locations: xxxxx</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="itinerary-card">
+                            <h5>Itinerary #2</h5>
+                            <p>Duration: xxxxx</p>
+                            <p>Days: xxxxx</p>
+                            <p>No. of Locations: xxxxx</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="itinerary-card">
+                            <h5>Itinerary #3</h5>
+                            <p>Duration: xxxxx</p>
+                            <p>Days: xxxxx</p>
+                            <p>No. of Locations: xxxxx</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="itinerary-card">
+                            <h5>Itinerary #4</h5>
+                            <p>Duration: xxxxx</p>
+                            <p>Days: xxxxx</p>
+                            <p>No. of Locations: xxxxx</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="itinerary-card">
+                            <h5>Itinerary #5</h5>
+                            <p>Duration: xxxxx</p>
+                            <p>Days: xxxxx</p>
+                            <p>No. of Locations: xxxxx</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="itinerary-card">
+                            <h5>Itinerary #6</h5>
+                            <p>Duration: xxxxx</p>
+                            <p>Days: xxxxx</p>
+                            <p>No. of Locations: xxxxx</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Right Scroll Button -->
-                <button class="btn btn-dark position-absolute right-scroll" style="z-index: 2; right: 0; top: 50%; transform: translateY(-50%);">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
             </div>
         </div>
     </div>
-
-
-    <script>
-        const container = document.getElementById('itinerary-container');
-        const leftScrollButton = document.querySelector('.left-scroll');
-        const rightScrollButton = document.querySelector('.right-scroll');
-        const scrollAmount = 300; // Adjust as needed
-
-        leftScrollButton.addEventListener('click', function() {
-            const currentTransform = getTransformValue(container.style.transform);
-            const newTransform = Math.min(currentTransform + scrollAmount, 0);
-            container.style.transform = `translateX(${newTransform}px)`;
-        });
-
-        rightScrollButton.addEventListener('click', function() {
-            const containerWidth = container.scrollWidth;
-            const visibleWidth = container.clientWidth;
-            const maxTranslateX = -containerWidth + visibleWidth;
-            const currentTransform = getTransformValue(container.style.transform);
-            const newTransform = Math.max(currentTransform - scrollAmount, maxTranslateX);
-            container.style.transform = `translateX(${newTransform}px)`;
-        });
-
-        function getTransformValue(transform) {
-            return parseInt(transform.replace('translateX(', '').replace('px)', ''), 10) || 0;
-        }
-    </script>
 
 
     <!-- Events Section -->
