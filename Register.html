@@ -12,6 +12,7 @@
             background: url('assets/pics/pic4.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
+            overflow: hidden;
         }
         .blur-overlay {
             backdrop-filter: blur(10px); /* Adjust the blur intensity here */
@@ -38,7 +39,9 @@
             border-radius: 10px;
             width: 350px;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 50px;
+            position: relative; /* Ensure it's on top of the blurred overlay */
+            z-index: 1;
         }
         .form-control {
             border-radius: 0;
@@ -69,9 +72,38 @@
         .text-link:hover {
             text-decoration: underline;
         }
+
+        /* Webkit-based browsers (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 12px; /* You can adjust the width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent; /* Transparent background for the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5); /* Transparent scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+            border: 3px solid transparent; /* Add space around the thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly less transparent on hover */
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin; /* Makes the scrollbar thinner */
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* Thumb color and track color */
+        }
     </style>
 </head>
-<body><!-- Navigation Bar -->
+<body>
+   <!-- Blurred Background Overlay -->
+   <div class="blur-overlay"></div>
+
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Monsoon Tours</a>
@@ -92,7 +124,7 @@
 <!-- Login Form Container -->
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="login-container">
-        <h3 class="text-center mb-4">Login</h3>
+        <h3 class="text-center mb-4">Register</h3>
         <form>
             <!-- Username-->
             <div class="form-group">
@@ -120,7 +152,7 @@
             </div>
             
             <!-- Login Button -->
-            <button type="submit" class="btn btn-login mt-3">LOGIN</button>
+            <button type="submit" class="btn btn-login mt-3">Register</button>
             
             <!-- Or Divider -->
             <div class="text-center mt-3">or</div>
@@ -133,7 +165,7 @@
             
             <!-- Sign Up Link -->
             <div class="text-center mt-2">
-                Don't have an Account? <a href="#" class="text-link">SIGN UP</a>
+                Already have an account? <a href="#" class="text-link">Log In</a>
             </div>
         </form>
     </div>
