@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage - Monsoon Tours</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+        }
+        .hero-section {
+            background: url('assets/pics/hero.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-section .content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+        }
+        .section-dark {
+            background-color: #222;
+            padding: 60px 0;
+        }
+        .itinerary-card {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        .events-section {
+            background-color: #333;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .events-section h2 {
+            margin-bottom: 40px;
+        }
+        .itinerary-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        #itinerary-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            min-width: 100%;
+        }
+
+        .itinerary-card {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            color: white;
+            flex: 0 0 auto; /* Ensure each card takes up its space */
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Monsoon Tours</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-3">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="content">
+            <h1>Want to go on a Tour?</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        </div>
+    </div>
+
+    <!-- Itinerary Section -->
+     <!-- Itinerary Section -->
+    <div class="section-dark">
+        <div class="container position-relative">
+            <div class="row">
+                <!-- Left Scroll Button -->
+                <button class="btn btn-dark position-absolute left-scroll" style="z-index: 2; left: 0; top: 50%; transform: translateY(-50%);">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="col-12">
+                    <div class="itinerary-wrapper">
+                        <div class="row flex-row flex-nowrap overflow-hidden" id="itinerary-container">
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="itinerary-card">
+                                    <h5>Itinerary #1</h5>
+                                    <p>Duration: xxxxx</p>
+                                    <p>Days: xxxxx</p>
+                                    <p>No. of Locations: xxxxx</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="itinerary-card">
+                                    <h5>Itinerary #2</h5>
+                                    <p>Duration: xxxxx</p>
+                                    <p>Days: xxxxx</p>
+                                    <p>No. of Locations: xxxxx</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="itinerary-card">
+                                    <h5>Itinerary #3</h5>
+                                    <p>Duration: xxxxx</p>
+                                    <p>Days: xxxxx</p>
+                                    <p>No. of Locations: xxxxx</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="itinerary-card">
+                                    <h5>Itinerary #4</h5>
+                                    <p>Duration: xxxxx</p>
+                                    <p>Days: xxxxx</p>
+                                    <p>No. of Locations: xxxxx</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="itinerary-card">
+                                    <h5>Itinerary #5</h5>
+                                    <p>Duration: xxxxx</p>
+                                    <p>Days: xxxxx</p>
+                                    <p>No. of Locations: xxxxx</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Scroll Button -->
+                <button class="btn btn-dark position-absolute right-scroll" style="z-index: 2; right: 0; top: 50%; transform: translateY(-50%);">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const container = document.getElementById('itinerary-container');
+        const leftScrollButton = document.querySelector('.left-scroll');
+        const rightScrollButton = document.querySelector('.right-scroll');
+        const scrollAmount = 300; // Adjust as needed
+
+        leftScrollButton.addEventListener('click', function() {
+            const currentTransform = getTransformValue(container.style.transform);
+            const newTransform = Math.min(currentTransform + scrollAmount, 0);
+            container.style.transform = `translateX(${newTransform}px)`;
+        });
+
+        rightScrollButton.addEventListener('click', function() {
+            const containerWidth = container.scrollWidth;
+            const visibleWidth = container.clientWidth;
+            const maxTranslateX = -containerWidth + visibleWidth;
+            const currentTransform = getTransformValue(container.style.transform);
+            const newTransform = Math.max(currentTransform - scrollAmount, maxTranslateX);
+            container.style.transform = `translateX(${newTransform}px)`;
+        });
+
+        function getTransformValue(transform) {
+            return parseInt(transform.replace('translateX(', '').replace('px)', ''), 10) || 0;
+        }
+    </script>
+
+
+    <!-- Events Section -->
+    <div class="events-section">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="event-card">
+                        <img src="assets/pics/event1.jpg" class="img-fluid" alt="Event 1">
+                        <p>Lorem Ipsum is simply dummy text of the printing industry.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="event-card">
+                        <img src="assets/pics/event2.jpg" class="img-fluid" alt="Event 2">
+                        <p>Lorem Ipsum is simply dummy text of the printing industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
