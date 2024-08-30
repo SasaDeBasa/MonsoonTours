@@ -9,9 +9,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: url('background-image.jpg') no-repeat center center fixed;
+            background: url('assets/pics/pic4.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
+        }
+        .blur-overlay {
+            backdrop-filter: blur(10px); /* Adjust the blur intensity here */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         .navbar {
             background-color: rgba(0, 0, 0, 0.7);
@@ -63,48 +71,47 @@
         }
     </style>
 </head>
-<body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">Monsoon Tours</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
-            </ul>
+<body><!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
+                </ul>
+            </div>
+            <a href="#" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
         </div>
-        <a href="#" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
-    </div>
-</nav>
+    </nav>
 <!-- Login Form Container -->
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="login-container">
         <h3 class="text-center mb-4">Login</h3>
         <form>
-            <!-- Username or Email -->
+            <!-- Username-->
             <div class="form-group">
-                <label for="username" class="d-flex align-items-center"><i class="fas fa-user mr-2"></i>Username/Email</label>
-                <input type="text" class="form-control" id="username" placeholder="Type your Username or Email">
+                <label for="username" class="d-flex align-items-center"><i class="fas fa-user mr-2"></i>Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Type your Username">
             </div>
             
             <!-- Contact -->
             <div class="form-group">
-                <label for="contact" class="d-flex align-items-center"><i class="fas fa-phone mr-2"></i>Contact</label>
-                <input type="contact" class="form-control" id="contact" placeholder="Type your contact number">
+                <label for="Contact" class="d-flex align-items-center"><i class="fas fa-phone mr-2"></i>Contact</label>
+                <input type="text" class="form-control" id="Contact" placeholder="Type your Contact">
             </div>
 
             <!-- Email -->
             <div class="form-group">
-                <label for="email" class="d-flex align-items-center"><i class="fas fa-envelope mr-2"></i>Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Type your email">
+                <label for="Email" class="d-flex align-items-center"><i class="fas fa-envelope mr-2"></i>Email</label>
+                <input type="text" class="form-control" id="Email" placeholder="Type your Email">
             </div>
-
+            
             <!-- Password -->
             <div class="form-group">
                 <label for="password" class="d-flex align-items-center"><i class="fas fa-lock mr-2"></i>Password</label>
