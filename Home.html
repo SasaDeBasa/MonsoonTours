@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
        body {
+        background: url('assets/pics/Home.jpg') no-repeat center fixed;
             background-color: #333;
             color: white;
         }
@@ -43,7 +44,7 @@
         }
 
         .section-dark {
-            background-color: #222;
+            background-color: #0000009b;
             padding: 60px 0;
         }
 
@@ -58,7 +59,7 @@
 
         /* Itinerary Section */
         .itinerary-wrapper {
-            overflow-x: auto;
+            overflow-x: hidden;
             overflow-y: hidden; /* Hide vertical scroll */
             position: relative;
             white-space: nowrap; /* Prevent wrapping of the cards */
@@ -79,13 +80,61 @@
         }
 
         .events-section {
-            background-color: #333;
-            padding: 60px 0;
+            background-color: #000000c5;
+            padding: 120px 0px 120px 0px;
             text-align: center;
         }
 
         .events-section h2 {
             margin-bottom: 40px;
+        }
+        .misc-section {
+            background-color: #00000000;
+            padding: 120px 0px 120px 0px;
+            text-align:left;
+        }
+        .misc-ontainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .misc-image-wrapper img {
+            max-width: 300px; /* Adjust the size of the image as needed */
+            height: auto;
+        }
+
+        .misc-text-wrapper {
+            flex: 1; /* Allows the text to take up the remaining space */
+            margin-left: 30px; /* Adds space between the image and the text */
+            margin-right: 30px;
+           
+        }
+
+        /* Webkit-based browsers (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 12px; /* You can adjust the width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent; /* Transparent background for the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5); /* Transparent scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+            border: 3px solid transparent; /* Add space around the thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly less transparent on hover */
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin; /* Makes the scrollbar thinner */
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* Thumb color and track color */
         }
 
     </style>
@@ -176,7 +225,7 @@
     </div>
 
 
-    <!-- Events Section -->
+    <!--Upcoming Events Section -->
     <div class="events-section">
         <div class="container">
             <h2>Upcoming Events</h2>
@@ -196,7 +245,34 @@
             </div>
         </div>
     </div>
+    <!--Misc--->
+    <div class="misc-ontainer">
+        <div class="misc-image-wrapper">
+            <img src="assets/dummypics/Nuwara-Eliya.jpg" style="padding-left: 220px;">
+        </div>
+        <div class="misc-text-wrapper" style="padding-right: 220px;">
+            <p>Your text goes here. You can add more content or styling as needed.</p>
+        </div>
+    </div>
 
+    <div class="misc-ontainer">
+        <div class="misc-text-wrapper" style="padding-left: 220px;">
+            <p>Your text goes here. You can add more content or styling as needed.</p>
+        </div>
+        <div class="misc-image-wrapper" style="padding-right: 220px;">
+            <img src="assets/dummypics/merlin_148552275_74c0d250-949c-46e0-b8a1-e6d499e992cf-superJumbo.jpg">
+        </div>
+        
+    </div>
+    <div class="section-dark">
+        <div class="section-dark" style="margin: 40px 40px; flex: 4;"></div>
+        <div class="section-dark" style="margin: 40px;"></div>
+        <div class="section-dark" style="margin: 40px;"></div>
+        <div style="margin-left: 40px;">
+            <div class="section-dark"></div>
+            <div></div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
