@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Monsoon Tours</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+        }
+        .contact-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .form-control, .btn {
+            border-radius: 0;
+        }
+        .btn-custom {
+            background-color: #f58220;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #e67300;
+        }
+        .contact-info {
+            font-size: 16px;
+        }
+        .footer-social-icons i {
+            color: white;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .profile-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+            color: white;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .profile-header .profile-icon {
+            font-size: 60px;
+            margin-right: 15px;
+        }
+        .profile-info {
+            flex-grow: 1;
+        }
+        .edit-icon {
+            color: #f58220;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .table-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            color: white;
+            vertical-align: middle;
+        }
+        .status-badge {
+            background-color: #f58220;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        .btn-delete {
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
+                </ul>
+            </div>
+            <a href="#" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+        </div>
+    </nav>
+
+    <!-- Profile Container -->
+    <div class="container profile-container">
+        <div class="profile-header">
+            <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+            <div class="profile-info">
+                <p>Name: xxxxxxxxxxxxxxxx <i class="fas fa-pencil-alt edit-icon"></i></p>
+                <p>Email: xxxxxxxxxx@gmail.com <i class="fas fa-pencil-alt edit-icon"></i></p>
+                <p>Contact: xxx-xxx-xxxx <i class="fas fa-pencil-alt edit-icon"></i></p>
+            </div>
+        </div>
+
+        <!-- Booking History Table -->
+        <div class="table-container">
+            <h5>History</h5>
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Duration</th>
+                        <th>Days</th>
+                        <th>Time</th>
+                        <th>Locations</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <td>Duration</td>
+                        <td>Days</td>
+                        <td>Time</td>
+                        <td>Locations</td>
+                        <td><span class="status-badge">Ongoing</span></td>
+                        <td>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>Duration</td>
+                        <td>Days</td>
+                        <td>Time</td>
+                        <td>Locations</td>
+                        <td><span class="status-badge bg-secondary">Completed</span></td>
+                        <td>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td>Duration</td>
+                        <td>Days</td>
+                        <td>Time</td>
+                        <td>Locations</td>
+                        <td><span class="status-badge bg-secondary">Completed</span></td>
+                        <td>
+                            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

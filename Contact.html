@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Monsoon Tours</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+        }
+        .contact-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .form-control, .btn {
+            border-radius: 0;
+        }
+        .btn-custom {
+            background-color: #f58220;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #e67300;
+        }
+        .contact-info {
+            font-size: 16px;
+        }
+        .footer-social-icons i {
+            color: white;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
+                </ul>
+            </div>
+            <a href="#" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+        </div>
+    </nav>
+
+    <!-- Contact Form Section -->
+    <div class="container contact-container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>We're ready, Let's Talk</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom">Send Message</button>
+                </form>
+            </div>
+            <div class="col-md-6 contact-info">
+                <h3>Contact Info</h3>
+                <p><strong>Address:</strong> xxxxxxxxxxxxxxxxxxxxxx</p>
+                <p><strong>Email Us:</strong> xxxxxxxxxxx@gmail.com</p>
+                <p><strong>Call Us:</strong> xxx-xxx-xxxx</p>
+                <h5>Follow Us</h5>
+                <div class="footer-social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
