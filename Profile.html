@@ -130,8 +130,8 @@
     <!-- Profile Container -->
     <div class="container profile-container">
         <div class="profile-header">
-            <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
-            <div class="profile-info">
+            <div><img id="ProfileUser" src="assets/icons/user.svg" alt=""></div>
+            <div style="padding-left: 30px;" class="profile-info">
                 <p>Name: xxxxxxxxxxxxxxxx <i class="fas fa-pencil-alt edit-icon"></i></p>
                 <p>Email: xxxxxxxxxx@gmail.com <i class="fas fa-pencil-alt edit-icon"></i></p>
                 <p>Contact: xxx-xxx-xxxx <i class="fas fa-pencil-alt edit-icon"></i></p>
@@ -141,7 +141,7 @@
         <!-- Booking History Table -->
         <div class="table-container">
             <h5>History</h5>
-            <table class="table table-borderless">
+            <table id="HistoryTable" class="table table-borderless">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -154,37 +154,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr id="HistoryRow">
                         <td>#1</td>
                         <td>Duration</td>
                         <td>Days</td>
                         <td>Time</td>
                         <td>Locations</td>
-                        <td><span class="status-badge">Ongoing</span></td>
+                        <td><p id="status" class="status-badge">Ongoing</p></td>
                         <td>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                            <button id="dustbin" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="HistoryRow">
                         <td>#2</td>
                         <td>Duration</td>
                         <td>Days</td>
                         <td>Time</td>
                         <td>Locations</td>
-                        <td><span class="status-badge bg-secondary">Completed</span></td>
+                        <td><p id="status" class="status-badge bg-secondary">Completed</p></td>
                         <td>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                            <button id="dustbin" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="HistoryRow">
                         <td>#3</td>
                         <td>Duration</td>
                         <td>Days</td>
                         <td>Time</td>
                         <td>Locations</td>
-                        <td><span class="status-badge bg-secondary">Completed</span></td>
+                        <td><p id="status" class="status-badge bg-secondary">Completed</p></td>
                         <td>
-                            <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                            <button id="dustbin" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>

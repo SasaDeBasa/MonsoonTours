@@ -120,6 +120,11 @@
     color: white;
 }
 
+#ProfileUser{
+    width: 100px;
+    filter: invert(100%);
+}
+
 .profile-header {
     display: flex;
     align-items: center;
@@ -127,7 +132,6 @@
 }
 
 .profile-header .profile-icon {
-    font-size: 60px;
     margin-right: 15px;
 }
 
@@ -174,12 +178,42 @@
     margin-right: 15px;
 }
 
-/* Status Badge */
-.status-badge {
+#status{
     background-color: #f58220;
     color: white;
     padding: 5px 10px;
-    border-radius: 15px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+#HistoryTable{
+    justify-content: center;
+    align-items: center;
+}
+
+#HistoryRow{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#HistoryRow:hover{
+    background-color: rgba(134, 134, 134, 0.566);
+}
+
+#HistoryRow td{
+    color: white;
+    font-weight: bold;
+}
+
+
+
+#dustbin{
+    color: gray;
+}
+
+#dustbin:hover{
+    color: #e67300;
 }
 
 /* Delete Button */
@@ -274,4 +308,11 @@
 .footer-bottom {
     border-top: 1px solid #444;
     padding-top: 10px;
+}
+#dustbin{
+
+}
+
+#dustbin:hover{
+    color: ;
 }
