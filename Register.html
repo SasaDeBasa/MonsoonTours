@@ -9,15 +9,32 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            background: url('assets/pics/pic4.jpg') no-repeat center center fixed;
-            background-size: cover;
+         .btn-login {
+            background-color: #333;
             color: white;
-            overflow: hidden;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition for color and size changes */
+        }
+        .btn-login:hover {
+            background-color: #636260a2;
+            transform: scale(1.05); /* Slightly enlarges the button */
+            color: white;
+        }
+        .social-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .social-login img {
+            width: 18px; /* Smaller size */
+            height: 18px;
+            margin-right: 8px; /* Adjust spacing as needed */
         }
     </style>
 </head>
-<body>
+<body style="background: url('assets/pics/pic4.jpg') no-repeat center center fixed;background-size: cover; color: white;overflow: hidden;">
    <!-- Blurred Background Overlay -->
    <div class="blur-overlay"></div>
 
@@ -30,10 +47,10 @@
                     <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
                 </li>
                 <li class="nav-item">
-                    <button class="transparent-button"><a class="nav-link" href="#">Taxi</a></button>
+                    <button class="transparent-button"><a class="nav-link" href="Taxi.html">Taxi</a></button>
                 </li>
                 <li class="nav-item">
-                    <button class="transparent-button"><a class="nav-link" href="#">Tour</a></button>
+                    <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
                 </li>
                 <li class="nav-item">
                     <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
@@ -41,18 +58,18 @@
             </ul>
             
         </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <button class="transparent-button">
-            <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
-        </button>
-    </div>
-</nav>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="transparent-button">
+                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            </button>
+        </div>
+    </nav>
 
 <!-- Login Form Container -->
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="login-container">
+    <div class="login-container" style="margin-top: 25px;">
         <h3 class="text-center mb-4">Register</h3>
         <form>
             <!-- Username-->
@@ -88,7 +105,7 @@
             
             <!-- Social Login -->
             <div class="social-login">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Icon">
+                <img style="filter: invert(100%);" src="assets/icons/googlelogin.svg" alt="Google Icon">
                 <a href="#" class="text-link">Sign up with Google</a>
             </div>
             
