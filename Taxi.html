@@ -111,6 +111,21 @@
             margin-right: 30px;
            
         }
+        .transparent-button {
+            border-radius: 7px;
+            background-color: transparent; /* Makes the background transparent */
+            border: 2px solid #000; /* Optional: a border for the button */
+            color: #0000001b; /* Text color */
+            padding: 10px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .transparent-button:hover {
+            background-color: #000; /* Changes the background color on hover */
+            color: #fff; /* Changes the text color on hover */
+        }
 
         /* Webkit-based browsers (Chrome, Safari, Edge) */
         ::-webkit-scrollbar {
@@ -146,12 +161,12 @@
             <a class="navbar-brand" href="#">Monsoon Tours</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-3">
-                    <button class="nav-item" style="border-radius: 10px; background-color: rgba(255, 255, 255, 0);"><a class="nav-link" href="Home.html">Home</a></button>
-                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contact.html">Contact</a></li>
+                    <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    <button class="transparent-button"><a class="nav-link" href="#">Taxi</a><button>
+                    <button class="transparent-button"><a class="nav-link" href="#">Tour</a><button>
+                    <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a><button>
                 </ul>
-            </div>
+            </div>a
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
