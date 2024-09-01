@@ -4,115 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
     <title>Profile - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: url('assets/pics//profile.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-        }
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-size: 18px;
-        }
-        .contact-container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 50px;
-        }
-        .form-control, .btn {
-            border-radius: 0;
-        }
-        .btn-custom {
-            background-color: #f58220;
-            color: white;
-            border: none;
-        }
-        .btn-custom:hover {
-            background-color: #e67300;
-        }
-        .contact-info {
-            font-size: 16px;
-        }
-        .footer-social-icons i {
-            color: white;
-            font-size: 24px;
-            margin-right: 15px;
-        }
-        .profile-container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 50px;
-            color: white;
-        }
-        .profile-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .profile-header .profile-icon {
-            font-size: 60px;
-            margin-right: 15px;
-        }
-        .profile-info {
-            flex-grow: 1;
-        }
-        .edit-icon {
-            color: #f58220;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-        .table-container {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .table th, .table td {
-            color: white;
-            vertical-align: middle;
-        }
-        .status-badge {
-            background-color: #f58220;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-        }
-        .btn-delete {
-            background-color: transparent;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Monsoon Tours</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-3">
-                    <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="#">Taxi</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="#">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
                 </ul>
+                
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            <button class="transparent-button">
+                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            </button>
         </div>
     </nav>
 
