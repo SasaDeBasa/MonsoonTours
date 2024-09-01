@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
     <title>Login - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: url('assets/pics/login.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            overflow: hidden;
+            
         }
         .blur-overlay {
             backdrop-filter: blur(10px);
@@ -22,19 +20,9 @@
             top: 0;
             left: 0;
         }
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-size: 18px;
-        }
         .login-container {
             background-color: rgba(0, 0, 0, 0.5);
-            border: 2px solid #007bff;
+            border: 2px solid #ffffff5f;
             padding: 40px;
             border-radius: 10px;
             width: 350px;
@@ -55,8 +43,9 @@
             transition: background-color 0.3s, transform 0.3s; /* Smooth transition for color and size changes */
         }
         .btn-login:hover {
-            background-color: #069ad4;
+            background-color: #636260a2;
             transform: scale(1.05); /* Slightly enlarges the button */
+            color: white;
         }
         .social-login {
             display: flex;
@@ -99,7 +88,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background: url('assets/pics/login.jpg') no-repeat center center fixed;background-size: cover;color: white;overflow: hidden;">
     <!-- Blurred Background Overlay -->
     <div class="blur-overlay"></div>
 
@@ -109,16 +98,27 @@
             <a class="navbar-brand" href="#">Monsoon Tours</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Taxi.html">Taxi</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="#">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
                 </ul>
+                
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="#" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            <button class="transparent-button">
+                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            </button>
         </div>
     </nav>
 
