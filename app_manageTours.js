@@ -17,87 +17,91 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Select elements
-const itineraryContainer = document.getElementById('itineraryContainer');
-const addItineraryBtn = document.getElementById('addItineraryBtn');
+const packageContainer = document.getElementById('packageContainer');
+const addPackageBtn = document.getElementById('addPackageBtn');
 
-// Function to create an itinerary DOM element
-function createItineraryElement(itineraryId, duration = "", days = "", locations = "") {
-    const itineraryDiv = document.createElement('div');
-    itineraryDiv.classList.add('itinerary');
-    itineraryDiv.setAttribute('data-id', itineraryId);
+// Function to create a tour package DOM element
+function createPackageElement(packageId, packageName = "", description = "", duration = "",locations="", imageUrl = "") {
+    const packageDiv = document.createElement('div');
+    packageDiv.classList.add('package');
+    packageDiv.setAttribute('data-id', packageId);
 
-    itineraryDiv.innerHTML = `
-        <img src="itinerary_default.jpg" alt="Itinerary">
-        <h2>Itinerary ${itineraryId}</h2>
-        <p>Duration</p>
-        <input type="text" class="duration" value="${duration}">
-        <p>Days</p>
-        <input type="text" class="days" value="${days}">
-        <p>No. of Locations</p>
-        <input type="text" class="locations" value="${locations}">
+    packageDiv.innerHTML = `
+        <img src="${imageUrl || 'default.jpg'}" alt="${packageName}" class="package-image">
+        <h2>Package Name: <input type="text" class="package-name" value="${packageName}" placeholder="Package Name"></h2>
+        <p>Description:</p>
+        <input type="text" class="description" value="${description}" placeholder="Enter description">
+        <p>Duration (in days):</p>
+        <input type="text" class="duration" value="${duration}" placeholder="Duration">
+        <p>No. of Locations:</p>
+        <input type="text" class="locations" value="${locations}" placeholder="Locations">
+        <p>Image URL:</p>
+        <input type="text" class="image-url" value="${imageUrl}" placeholder="Enter image URL">
         <button class="save-btn">Save Changes</button>
-        <button class="delete-btn">Delete Itinerary</button>
+        <button class="delete-btn">Delete Package</button>
     `;
 
     // Event listener for saving changes
-    itineraryDiv.querySelector('.save-btn').addEventListener('click', () => {
-        saveItinerary(itineraryId, itineraryDiv);
+    packageDiv.querySelector('.save-btn').addEventListener('click', () => {
+        savePackage(packageId, packageDiv);
     });
 
-    // Event listener for deleting the itinerary
-    itineraryDiv.querySelector('.delete-btn').addEventListener('click', () => {
-        deleteItinerary(itineraryId, itineraryDiv);
+    // Event listener for deleting the package
+    packageDiv.querySelector('.delete-btn').addEventListener('click', () => {
+        deletePackage(packageId, packageDiv);
     });
 
-    itineraryContainer.appendChild(itineraryDiv);
+    packageContainer.appendChild(packageDiv);
 }
 
-// Function to add a new itinerary
-function addItinerary() {
-    const itineraryId = Date.now().toString(); // Unique ID based on timestamp
-    createItineraryElement(itineraryId);
+// Function to add a new tour package
+function addPackage() {
+    const packageId = Date.now().toString(); // Unique ID based on timestamp
+    createPackageElement(packageId);
 }
 
-// Function to save itinerary data to Firestore
-async function saveItinerary(itineraryId, itineraryDiv) {
-    const duration = itineraryDiv.querySelector('.duration').value;
-    const days = itineraryDiv.querySelector('.days').value;
-    const locations = itineraryDiv.querySelector('.locations').value;
+// Function to save package data to Firestore
+async function savePackage(packageId, packageDiv) {
+    const packageName = packageDiv.querySelector('.package-name').value;
+    const description = packageDiv.querySelector('.description').value;
+    const duration = packageDiv.querySelector('.duration').value;
+    const locations = packageDiv.querySelector('.locations').value;
+    const imageUrl = packageDiv.querySelector('.image-url').value;
 
-    const itineraryData = { duration, days, locations };
+    const packageData = { packageName, description, duration, locations, imageUrl };
 
     try {
-        await setDoc(doc(db, "itineraries", itineraryId), itineraryData);
-        alert(`Itinerary ${itineraryId} saved successfully!`);
+        await setDoc(doc(db, "packages", packageId), packageData);
+        alert(`Tour package ${packageId} saved successfully!`);
     } catch (error) {
-        console.error("Error saving itinerary:", error);
-        alert('Error saving itinerary. Please try again.');
+        console.error("Error saving package:", error);
+        alert('Error saving package. Please try again.');
     }
 }
 
-// Function to delete an itinerary from Firestore and the UI
-async function deleteItinerary(itineraryId, itineraryDiv) {
+// Function to delete a package from Firestore and the UI
+async function deletePackage(packageId, packageDiv) {
     try {
-        await deleteDoc(doc(db, "itineraries", itineraryId));
-        itineraryDiv.remove();
-        alert(`Itinerary ${itineraryId} deleted successfully!`);
+        await deleteDoc(doc(db, "packages", packageId));
+        packageDiv.remove();
+        alert(`Tour package ${packageId} deleted successfully!`);
     } catch (error) {
-        console.error("Error deleting itinerary:", error);
-        alert('Error deleting itinerary. Please try again.');
+        console.error("Error deleting package:", error);
+        alert('Error deleting package. Please try again.');
     }
 }
 
-// Event listener for the "Add Itinerary" button
-addItineraryBtn.addEventListener('click', addItinerary);
+// Event listener for the "Add Tour Package" button
+addPackageBtn.addEventListener('click', addPackage);
 
-// Function to load existing itineraries from Firestore
-async function loadItineraries() {
-    const querySnapshot = await getDocs(collection(db, "itineraries"));
+// Function to load existing packages from Firestore
+async function loadPackages() {
+    const querySnapshot = await getDocs(collection(db, "packages"));
     querySnapshot.forEach((doc) => {
         const data = doc.data();
-        createItineraryElement(doc.id, data.duration, data.days, data.locations);
+        createPackageElement(doc.id, data.packageName, data.description, data.duration,data.locations, data.imageUrl);
     });
 }
 
-// Load itineraries on page load
-loadItineraries();
+// Load packages on page load
+loadPackages();
