@@ -1,5 +1,6 @@
+// Import Firebase functions from the newer Firebase v10.13.1
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,20 +17,65 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Function to load FAQs (this is now handled by real-time updates)
-async function loadFAQs() {
-    // No longer needed as onSnapshot handles real-time updates
+// Function to render FAQs
+function renderFAQs(faqs) {
+    const faqList = document.getElementById('faqList');
+    faqList.innerHTML = ''; // Clear existing FAQs
+
+    faqs.forEach((doc) => {
+        const faqData = doc.data();
+        const faqId = doc.id;
+
+        const faqItem = document.createElement('div');
+        faqItem.classList.add('faq-list-item');
+
+        faqItem.innerHTML = `
+            <div>
+                <strong>${faqData.question}</strong>
+                <p>${faqData.answer}</p>
+            </div>
+            <div>
+                <button class="btn btn-warning btn-sm" onclick="editFAQ('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteFAQ('${faqId}')">Delete</button>
+            </div>
+        `;
+
+        faqList.appendChild(faqItem);
+    });
 }
 
-// Function to add a new FAQ
-async function addFAQ(question, answer) {
+// Function to handle FAQ editing
+window.editFAQ = function(id, question, answer) {
+    document.getElementById('faqId').value = id;
+    document.getElementById('faqQuestion').value = question;
+    document.getElementById('faqAnswer').value = answer;
+
+    document.getElementById('addFaqForm').style.display = 'none'; // Hide add form
+    document.getElementById('editFaqForm').style.display = 'block'; // Show edit form
+};
+
+// Function to update an FAQ
+async function updateFAQ() {
+    const id = document.getElementById('faqId').value;
+    const question = document.getElementById('faqQuestion').value;
+    const answer = document.getElementById('faqAnswer').value;
+
     try {
-        const faqCollection = collection(db, 'faqs');
-        await addDoc(faqCollection, { question, answer });
+        const faqDoc = doc(db, 'faqs', id);
+        await updateDoc(faqDoc, {
+            question: question,
+            answer: answer
+        });
+
+        // Clear and hide edit form
+        document.getElementById('faqId').value = '';
         document.getElementById('faqQuestion').value = '';
         document.getElementById('faqAnswer').value = '';
+        document.getElementById('editFaqForm').style.display = 'none'; // Hide edit form
+        document.getElementById('addFaqForm').style.display = 'block'; // Show add form
+        
     } catch (error) {
-        console.error("Error adding FAQ: ", error);
+        console.error("Error updating FAQ: ", error);
     }
 }
 
@@ -43,76 +89,40 @@ async function deleteFAQ(id) {
     }
 }
 
-// Function to edit an FAQ
-function editFAQ(id, question, answer) {
-    document.getElementById('faqQuestion').value = question;
-    document.getElementById('faqAnswer').value = answer;
-    document.getElementById('editFaqId').value = id; // Store ID in a hidden input or variable
-    const addFaqForm = document.getElementById('addFaqForm');
-    addFaqForm.removeEventListener('submit', handleAddSubmit);
-    addFaqForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        updateFAQ(id);
-    });
-}
-
-// Function to update an FAQ
-async function updateFAQ(id) {
-    const question = document.getElementById('faqQuestion').value;
-    const answer = document.getElementById('faqAnswer').value;
+// Function to add a new FAQ
+async function addFAQ(question, answer) {
     try {
-        const faqDoc = doc(db, 'faqs', id);
-        await updateDoc(faqDoc, { question, answer });
-        document.getElementById('faqQuestion').value = '';
-        document.getElementById('faqAnswer').value = '';
-        const addFaqForm = document.getElementById('addFaqForm');
-        addFaqForm.removeEventListener('submit', handleUpdateSubmit);
-        addFaqForm.addEventListener('submit', handleAddSubmit);
+        const faqCollection = collection(db, 'faqs');
+        await addDoc(faqCollection, {
+            question: question,
+            answer: answer
+        });
     } catch (error) {
-        console.error("Error updating FAQ: ", error);
+        console.error("Error adding FAQ: ", error);
     }
 }
 
+// Real-time listener for FAQ collection
+const faqCollection = collection(db, 'faqs');
+onSnapshot(faqCollection, (snapshot) => {
+    const faqs = snapshot.docs;
+    renderFAQs(faqs);
+});
+
 // Handle form submission for adding FAQ
-function handleAddSubmit(event) {
+document.getElementById('addFaqForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const question = document.getElementById('faqQuestion').value;
     const answer = document.getElementById('faqAnswer').value;
     addFAQ(question, answer);
-}
+    document.getElementById('faqQuestion').value = '';
+    document.getElementById('faqAnswer').value = '';
+});
+
+
 
 // Handle form submission for editing FAQ
-function handleUpdateSubmit(event) {
+document.getElementById('editFaqForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const id = document.getElementById('editFaqId').value;
-    updateFAQ(id);
-}
-
-// Add event listener to the FAQ form
-document.getElementById('addFaqForm').addEventListener('submit', handleAddSubmit);
-
-// Real-time Listener for FAQ Collection
-const faqCollection = collection(db, 'faqs');
-onSnapshot(faqCollection, (snapshot) => {
-    const faqList = document.getElementById('faqList');
-    faqList.innerHTML = ''; // Clear the list first
-
-    snapshot.forEach((docSnapshot) => {
-        const faqData = docSnapshot.data();
-        const faqItem = document.createElement('div');
-        faqItem.classList.add('faq-list-item');
-        
-        faqItem.innerHTML = `
-            <div>
-                <strong>${faqData.question}</strong>
-                <p>${faqData.answer}</p>
-            </div>
-            <div>
-                <button class="btn btn-warning btn-sm" onclick="editFAQ('${docSnapshot.id}', '${faqData.question}', '${faqData.answer}')">Edit</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteFAQ('${docSnapshot.id}')">Delete</button>
-            </div>
-        `;
-        
-        faqList.appendChild(faqItem);
-    });
+    updateFAQ();
 });
