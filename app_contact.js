@@ -29,7 +29,7 @@ document.querySelector("#contactForm").addEventListener("submit", function(event
         user_name: name,
         user_email: email,
         message: message,
-        recipient_email: "yehenabercrombii@gmail.com" // This is the recipient's email (acc2)
+        recipient_email: "monsoonemailsup@gmail.com" // This is the recipient's email (acc2)
     };
 
     // Send the email using EmailJS
