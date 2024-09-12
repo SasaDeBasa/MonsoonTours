@@ -27,18 +27,35 @@ function createPackageElement(packageId, packageName = "", description = "", dur
     packageDiv.setAttribute('data-id', packageId);
 
     packageDiv.innerHTML = `
-        <img src="${imageUrl || 'default.jpg'}" alt="${packageName}" class="package-image">
-        <h2>Package Name: <input type="text" class="package-name" value="${packageName}" placeholder="Package Name"></h2>
-        <p>Description:</p>
-        <input type="text" class="description" value="${description}" placeholder="Enter description">
-        <p>Duration (in days):</p>
-        <input type="text" class="duration" value="${duration}" placeholder="Duration">
-        <p>No. of Locations:</p>
-        <input type="text" class="locations" value="${locations}" placeholder="Locations">
-        <p>Image URL:</p>
-        <input type="text" class="image-url" value="${imageUrl}" placeholder="Enter image URL">
-        <button class="save-btn">Save Changes</button>
-        <button class="delete-btn">Delete Package</button>
+        <div class="card mb-3" style="width: 18rem;">
+    <img src="${imageUrl || 'default.jpg'}" alt="${packageName}" class="card-img-top package-image" style="height: 150px; object-fit: cover;">
+    <div class="card-body p-2">
+        <h5 class="card-title">Package Name: 
+            <input type="text" class="form-control form-control-sm package-name" value="${packageName}" placeholder="Package Name">
+        </h5>
+        <p class="card-text">
+            <strong>Description:</strong> 
+            <input type="text" class="form-control form-control-sm description" value="${description}" placeholder="Enter description">
+        </p>
+        <p class="card-text">
+            <strong>Duration (in days):</strong> 
+            <input type="text" class="form-control form-control-sm duration" value="${duration}" placeholder="Duration">
+        </p>
+        <p class="card-text">
+            <strong>No. of Locations:</strong> 
+            <input type="text" class="form-control form-control-sm locations" value="${locations}" placeholder="Locations">
+        </p>
+        <p class="card-text">
+            <strong>Image URL:</strong> 
+            <input type="text" class="form-control form-control-sm image-url" value="${imageUrl}" placeholder="Enter image URL">
+        </p>
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-sm btn-primary save-btn">Save</button>
+            <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+        </div>
+    </div>
+</div>
+
     `;
 
     // Event listener for saving changes

@@ -226,13 +226,14 @@
 
     <div class="pagemeow">
         <div id="content1">
-            <div class="container">
-                <!-- Plus sign button to add new tour package -->
-                <button id="addPackageBtn">+ Add Tour Package</button>
+            <div class="container d-flex" style="display: flex; align-items: flex-start; ">
                 <!-- Container for dynamically added tour packages -->
-                <div id="packageContainer" class="package-container"></div>
+                <div id="packageContainer" class="package-container d-flex" style="margin: 20px; display: flex; gap: 20px; flex-wrap: nowrap;"></div>
+                <!-- Plus sign button to add new tour package -->
+                <button id="addPackageBtn" class="btn btn-dark" style="margin: 20px; border-radius: 15px; height: fit-content; width: 80px; align-self: center;">+ Add Tour Package</button>
             </div>
         </div>
+        
 
         <!-- Include this script to handle the dynamic itinerary addition -->
         <script src="app_manageTours.js" type="module"></script>

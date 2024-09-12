@@ -27,12 +27,12 @@ async function fetchAndDisplayPackages() {
             const packageData = doc.data();
             const packageCard = `
                 <div class="col-md-4 package-card">
-                    <div class="card h-100">
+                    <div class="card h-100 bg-dark">
                         <img src="${packageData.imageUrl}" class="card-img-top" alt="Package Image">
                         <div class="card-body">
-                            <h5 class="card-title">${packageData.name}</h5>
-                            <p class="card-text"><strong>Duration:</strong> ${packageData.duration}</p>
-                            <p class="card-text"><strong>No. of Locations:</strong> ${packageData.noOfLocations}</p>
+                            <h5 class="card-title">${packageData.packageName}</h5>
+                            <p class="card-text"><strong>Duration:</strong> ${packageData.duration} days</p>
+                            <p class="card-text"><strong>No. of Locations:</strong> ${packageData.locations}</p>
                             <p class="card-text card-description">${packageData.description}</p>
                         </div>
                     </div>
