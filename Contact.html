@@ -124,7 +124,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
     <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+    (function(){
+       emailjs.init({
+         publicKey: "x5DF0-RSt3jTJ9Ytr",
+       });
+    })();
+ </script>
 
     <!-- Import JavaScript file -->
     <script src="app_contact.js" type="module"></script>
