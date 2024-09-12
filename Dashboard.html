@@ -147,48 +147,20 @@
             </button>
         </div>
     </nav>
-
-    <div id="content1">
+<div class="pagemeow">
+    <div id="content1"></div>
         <div class="container">
-        <div class="itineraries">
-            <div class="itinerary">
-                <img src="itinerary1.jpg" alt="Itinerary 1">
-                <h2>Itinerary 1</h2>
-                <p>Duration</p>
-                <input type="text">
-                <p>Days</p>
-                <input type="text">
-                <p>No. of Locations</p>
-                <input type="text">
-                <button>Save Changes</button>
+            <!-- Plus sign button to add new itinerary -->
+            <button id="addItineraryBtn">+ Add Itinerary</button>
+            <!-- Container for dynamically added itineraries -->
+            <div class="itineraries" id="itineraryContainer">
             </div>
-
-            <div class="itinerary">
-                <img src="itinerary2.jpg" alt="Itinerary 2">
-                <h2>Itinerary 2</h2>
-                <p>Duration</p>
-                <input type="text">
-                <p>Days</p>
-                <input type="text">
-                <p>No. of Locations</p>
-                <input type="text">
-                <button>Save Changes</button>
-            </div>
-
-            <div class="itinerary">
-                <img src="itinerary3.jpg" alt="Itinerary 3">
-                <h2>Itinerary 3</h2>
-                <p>Duration</p>
-                <input type="text">
-                <p>Days</p>
-                <input type="text">
-                <p>No. of Locations</p>
-                <input type="text">
-                <button>Save Changes</button>
-            </div>
-        </div>
         </div>
     </div>
+    
+    <!-- Include this script to handle the dynamic itinerary addition -->
+    <script src="app_manageTours.js" type="module"></script>
+    
     
     <div class="content3">
         <div class="container">
@@ -226,6 +198,8 @@
         </div>
     
     </div>
+</div>
+    
     
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
