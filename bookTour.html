@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Book a Tour - Monsoon Tours</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        .bookTourBtn {
+            color: white;
+            border: 1px;
+            background-color: rgba(255, 115, 0, 0.429);
+            height: 40px;
+            width: 120px;
+            border-radius: 10px;
+        }
+        .bookTourBtn:hover {
+            background-color: rgb(255, 98, 0);
+            color: black;
+        }
+    </style>
+</head>
+<body style="background: url('assets/pics/contact.jpg') no-repeat center center fixed; background-size: cover; color: white;">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Monsoon Tours</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-3">
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Taxi.html">Taxi</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="transparent-button">
+                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Book Tour Section -->
+    <div class="container contact-container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Book Your Tour</h3>
+                <form action="book_tour.php" method="POST">
+                    <input type="hidden" name="userId" value="user123"> <!-- Replace with actual user ID from session -->
+                    <div class="form-group">
+                        <label for="tourId">Tour ID:</label>
+                        <input type="text" class="form-control" name="tourId" id="tourId" placeholder="Enter Tour ID" required>
+                    </div>
+                    <button class="bookTourBtn" type="submit">Book Tour</button>
+                </form>
+            </div>
+            <div class="col-md-6 contact-info">
+                <h3>Contact Info</h3>
+                <p><strong>Address:</strong> xxxxxxxxxxxxxxxxxxxxxx</p>
+                <p><strong>Email Us:</strong> xxxxxxxxxxx@gmail.com</p>
+                <p><strong>Call Us:</strong> xxx-xxx-xxxx</p>
+                <h5>Follow Us</h5>
+                <div class="footer-social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: MonsoonTours@gmail.com</p>
+                <p>Phone: (+94) 76 199 4312</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#" class="social-media-link">Facebook</a>
+                <a href="#" class="social-media-link">Twitter</a>
+                <a href="#" class="social-media-link">Instagram</a>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="Home.html">Home</a>
+                <a href="Taxi.html">Taxi Services</a>
+                <a href="Tour.html">Tour Services</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
