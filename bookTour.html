@@ -8,6 +8,29 @@
     <title>Book a Tour - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Add Firebase JS SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    
+    <!-- Firebase Initialization -->
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
+    </script>
+
     <style>
         .bookTourBtn {
             color: white;
@@ -57,7 +80,8 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Book Your Tour</h3>
-                <form action="book_tour.php" method="POST">
+                <!-- Changed form to call a JavaScript function on submit -->
+                <form id="bookTourForm">
                     <input type="hidden" name="userId" value="user123"> <!-- Replace with actual user ID from session -->
                     <div class="form-group">
                         <label for="tourId">Tour ID:</label>
@@ -65,6 +89,7 @@
                     </div>
                     <button class="bookTourBtn" type="submit">Book Tour</button>
                 </form>
+                <div id="tourDetails"></div> <!-- Container to display tour details -->
             </div>
             <div class="col-md-6 contact-info">
                 <h3>Contact Info</h3>
@@ -80,6 +105,7 @@
             </div>
         </div>
     </div>
+  
 
     <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
@@ -110,6 +136,43 @@
             <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Script to interact with Firestore -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('bookTourForm').addEventListener('submit', async function (event) {
+                event.preventDefault(); // Prevent form from submitting normally
+
+                // Get the tour ID input value
+                const tourId = document.getElementById('tourId').value;
+                
+                // Fetch the tour details from Firestore using the entered tour ID
+                try {
+                    // Reference to the document in the "tours" collection with the specified tour ID
+                    const docRef = db.collection('tours').doc(tourId);
+                    const doc = await docRef.get();
+
+                    if (doc.exists) {
+                        // Display the tour details in the designated area
+                        const tourData = doc.data();
+                        document.getElementById('tourDetails').innerHTML = `
+                            <h4>Tour Details</h4>
+                            <p><strong>Name:</strong> ${tourData.name}</p>
+                            <p><strong>Description:</strong> ${tourData.description}</p>
+                            <p><strong>Price:</strong> $${tourData.price}</p>
+                            <p><strong>Date:</strong> ${tourData.date}</p>
+                        `;
+                    } else {
+                        // If no tour is found with the provided ID
+                        document.getElementById('tourDetails').innerHTML = '<p>No tour found with the given ID.</p>';
+                    }
+                } catch (error) {
+                    console.error('Error fetching tour:', error);
+                    document.getElementById('tourDetails').innerHTML = '<p>Error fetching tour details. Please try again.</p>';
+                }
+            });
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
