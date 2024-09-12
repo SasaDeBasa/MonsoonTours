@@ -104,38 +104,7 @@ const firebaseConfig = {
 
    //Tour
   // Function to handle fetching tour details
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('bookTourForm').addEventListener('submit', async function (event) {
-      event.preventDefault(); // Prevent form from submitting normally
 
-      // Get the tour ID input value
-      const tourId = document.getElementById('tourId').value;
-
-      try {
-          // Reference to the document in the "tour" collection with the specified tour ID
-          const docRef = doc(db, "tour", tourId);
-          const docSnap = await getDoc(docRef);
-
-          if (docSnap.exists()) {
-              // Display the tour details in the designated area
-              const tourData = docSnap.data();
-              document.getElementById('tourDetails').innerHTML = `
-                  <h4>Tour Details</h4>
-                  <p><strong>Name:</strong> ${tourData.name}</p>
-                  <p><strong>Description:</strong> ${tourData.description}</p>
-                  <p><strong>Price:</strong> $${tourData.price}</p>
-                  <p><strong>Date:</strong> ${tourData.date}</p>
-              `;
-          } else {
-              // If no tour is found with the provided ID
-              document.getElementById('tourDetails').innerHTML = '<p>No tour found with the given ID.</p>';
-          }
-      } catch (error) {
-          console.error('Error fetching tour:', error);
-          document.getElementById('tourDetails').innerHTML = '<p>Error fetching tour details. Please try again.</p>';
-      }
-    });
-  });
    //Contact
    //Profile
    //Login
