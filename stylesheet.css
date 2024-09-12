@@ -107,7 +107,7 @@
     justify-content: center; 
 }
 .pagemeow{
-    
+    padding-left: 50px;
 }
 .misc-text-wrapper {
     flex: 1; /* Allows the text to take up the remaining space */
