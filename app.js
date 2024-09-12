@@ -23,6 +23,9 @@ const firebaseConfig = {
   // Reference to the vehicles collection
   const vehicleRef = db.collection("vehicles");
   
+  //Reference to the tour collection
+  const tourRef = db.collection("tour").doc("tourId");
+
   // Add Vehicle Function
   document.getElementById("addVehicleForm").addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -100,6 +103,8 @@ const firebaseConfig = {
 
 
    //Tour
+
+   
    //Contact
    //Profile
    //Login
