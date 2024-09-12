@@ -123,6 +123,22 @@
     margin-top: 50px;
 }
 
+.container-tour{
+
+}
+.container-tour.package-card {
+    margin-bottom: 20px;
+    background-color: #000;
+}
+.container-tour.package-card img {
+    height: 200px;
+    object-fit: cover;
+}
+.container-tour.card-description {
+    height: 80px;
+    overflow: hidden;
+}
+
 /* Login Container */
 .login-container {
     background-color: rgba(0, 0, 0, 0.5);
