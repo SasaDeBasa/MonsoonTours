@@ -9,20 +9,20 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
-        .sendMessageBtn{
+        .sendMessageBtn {
             color: white;
             border: 1px; background-color: rgba(255, 115, 0, 0.429);
             height: 40px;
             width: 120px;
             border-radius: 10px;
         }
-        .sendMessageBtn:hover{
+        .sendMessageBtn:hover {
             background-color: rgb(255, 98, 0);
             color: black;
         }
     </style>
 </head>
-<body style="background: url('assets/pics/contact.jpg') no-repeat center center fixed;background-size: cover;color: white;">
+<body style="background: url('assets/pics/contact.jpg') no-repeat center center fixed; background-size: cover; color: white;">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Monsoon Tours</a>
@@ -41,7 +41,6 @@
                         <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
                     </li>
                 </ul>
-                
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,7 +51,6 @@
         </div>
     </nav>
 
-
     <!-- Contact Form Section -->
     <div class="container contact-container mt-5">
         <div class="row">
@@ -60,13 +58,13 @@
                 <h3>We're ready, Let's Talk</h3>
                 <form id="contactForm">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                        <input type="text" class="form-control" placeholder="Your Name" id="name">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email Address">
+                        <input type="email" class="form-control" placeholder="Email Address" id="email">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                        <textarea class="form-control" rows="5" placeholder="Message" id="message"></textarea>
                     </div>
                     <button class="sendMessageBtn" type="submit" class="btn btn-custom">Send Message</button>
                 </form>
@@ -74,8 +72,7 @@
             <div class="col-md-6 contact-info">
                 <h3>Contact Info</h3>
                 <p><strong>Address:</strong> xxxxxxxxxxxxxxxxxxxxxx</p>
-                <p><strong>Email Us: </strong><a href="mailto:yehenabercrombii@gmail.com?subject=Hello%20World&body=Hi%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.">yehenabercrombii@gmail.com</a>
-                </p>
+                <p><strong>Email Us: </strong><a href="mailto:yehenabercrombii@gmail.com?subject=Hello%20World&body=Hi%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.">yehenabercrombii@gmail.com</a></p>
                 <p><strong>Call Us:</strong> +94 76 199 4312 </p>
                 <h5>Follow Us</h5>
                 <div class="footer-social-icons">
@@ -86,10 +83,11 @@
             </div>
         </div>
     </div>
+
     <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
-    
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -116,13 +114,19 @@
         </div>
     </footer>
 
+    <!-- External Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <!-- Import JavaScript file -->
     <script src="app.js" type="module"></script>
-    
 </body>
 </html>

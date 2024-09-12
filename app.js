@@ -94,37 +94,4 @@ const firebaseConfig = {
 
    // Initialize Firebase
    
-   const analytics = getAnalytics(app);
-
-   //Contact
-// Initialize EmailJS
-emailjs.init("x5DF0-RSt3jTJ9Ytr"); // Replace with your EmailJS user ID
-
-// Handle form submission
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting the default way
-
-    // Get form values
-    const name = document.querySelector('input[type="text"]').value;
-    const email = document.querySelector('input[type="email"]').value;
-    const message = document.querySelector('textarea').value;
-
-    // Create email payload
-    const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message
-    };
-
-    // Send email using EmailJS
-    emailjs.send("service_ldz9bt2", "template_rxkn98j", templateParams)
-        .then(function(response) {
-            alert("Message sent successfully!");
-            document.getElementById("contactForm").reset(); // Clear form fields
-        }, function(error) {
-            console.error("Failed to send message: ", error);
-        });
-});
-
-   
-  
+   const analytics = getAnalytics(app);  
