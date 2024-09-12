@@ -1,16 +1,16 @@
- // Firebase Initialization
- import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
- import { getFirestore, doc, setDoc, collection, getDocs, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+// Firebase Initialization
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
- const firebaseConfig = {
-     apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
-     authDomain: "monsoontours-65f1e.firebaseapp.com",
-     projectId: "monsoontours-65f1e",
-     storageBucket: "monsoontours-65f1e.appspot.com",
-     messagingSenderId: "378330088807",
-     appId: "1:378330088807:web:217c00702fc17fea671bc2",
-     measurementId: "G-L4V5MLH9KD"
- };
+const firebaseConfig = {
+    apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
+    authDomain: "monsoontours-65f1e.firebaseapp.com",
+    projectId: "monsoontours-65f1e",
+    storageBucket: "monsoontours-65f1e.appspot.com",
+    messagingSenderId: "378330088807",
+    appId: "1:378330088807:web:217c00702fc17fea671bc2",
+    measurementId: "G-L4V5MLH9KD"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
