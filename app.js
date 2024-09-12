@@ -74,4 +74,17 @@ const firebaseConfig = {
    // Initialize Firebase
    
    const analytics = getAnalytics(app);
+
+   //Home
+
+
+   //Taxi
+
+   
+   //Tour
+   //Contact
+   //Profile
+   //Login
+   //Register
+   
   

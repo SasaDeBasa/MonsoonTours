@@ -110,14 +110,14 @@
 
 <body>
     <div class="sidebar">
-        <button onclick="changeContent('content1')"><img src="tour-icon.png" alt="Tours">Tours</button>
-        <button onclick="changeContent('content2')"><img src="bookings-icon.png" alt="Bookings">Bookings</button>
-        <button onclick="changeContent('content3')"><img src="vehicles-icon.png" alt="Vehicles">Vehicles</button>
-        <button onclick="changeContent('content4')"><img src="drivers-icon.png" alt="Drivers">Drivers</button>
-        <button onclick="changeContent('content5')"><img src="reviews-icon.png" alt="Reviews">Reviews</button>
-        <button onclick="changeContent('content6')"><img src="support-icon.png" alt="Customer Support">Customer
-            Support</button>
+        <button><img src="tour-icon.png" alt="Tours">Tours</button>
+        <button><img src="bookings-icon.png" alt="Bookings">Bookings</button>
+        <button href="#content3"><img src="vehicles-icon.png" alt="Vehicles">Vehicles</button>
+        <button><img src="drivers-icon.png" alt="Drivers">Drivers</button>
+        <button><img src="reviews-icon.png" alt="Reviews">Reviews</button>
+        <button><img src="support-icon.png" alt="Customer Support">Customer Support</button>
     </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Monsoon Tours</a>
@@ -136,7 +136,6 @@
                         <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
                     </li>
                 </ul>
-
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,112 +147,108 @@
             </button>
         </div>
     </nav>
-    <div id="content"></div>
-    <script>
-        function changeContent(section) {
-            const content = {
-                content1: `
-                    <div class="container">
-                        <div class="itineraries">
-                            <div class="itinerary">
-                                <img src="itinerary1.jpg" alt="Itinerary 1">
-                                <h2>Itinerary 1</h2>
-                                <p>Duration</p>
-                                <input type="text">
-                                <p>Days</p>
-                                <input type="text">
-                                <p>No. of Locations</p>
-                                <input type="text">
-                                <button>Save Changes</button>
-                            </div>
-        
-                            <div class="itinerary">
-                                <img src="itinerary2.jpg" alt="Itinerary 2">
-                                <h2>Itinerary 2</h2>
-                                <p>Duration</p>
-                                <input type="text">
-                                <p>Days</p>
-                                <input type="text">
-                                <p>No. of Locations</p>
-                                <input type="text">
-                                <button>Save Changes</button>
-                            </div>
-        
-                            <div class="itinerary">
-                                <img src="itinerary3.jpg" alt="Itinerary 3">
-                                <h2>Itinerary 3</h2>
-                                <p>Duration</p>
-                                <input type="text">
-                                <p>Days</p>
-                                <input type="text">
-                                <p>No. of Locations</p>
-                                <input type="text">
-                                <button>Save Changes</button>
-                            </div>
-                        </div>
-                    </div>
-                `,
-                content2: `<div class="container"></div>`,
-                content3: `
-                    <div class="container">
-                        <h2>Vehicle List</h2>
-                        <table id="vehicleTable" border="1">
-                            <thead>
-                                <tr>
-                                    <th>Vehicle ID</th>
-                                    <th>Make</th>
-                                    <th>Model</th>
-                                    <th>Year</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rows will be dynamically added here -->
-                            </tbody>
-                        </table>
-        
-                        <h3>Add Vehicle</h3>
-                        <form id="addVehicleForm">
-                            <label for="vehicleId">Vehicle ID:</label>
-                            <input type="text" id="vehicleId" name="vehicleId" required>
-                            <br>
-                            <label for="make">Make:</label>
-                            <input type="text" id="make" name="make" required>
-                            <br>
-                            <label for="model">Model:</label>
-                            <input type="text" id="model" name="model" required>
-                            <br>
-                            <label for="year">Year:</label>
-                            <input type="text" id="year" name="year" required>
-                            <br><br>
-                            <button type="submit">Add Vehicle</button>
-                        </form>
-                    </div>
-                `,
-                content4: `<div class="container"></div>`,
-                content5: `<div class="container"></div>`,
-                content6: `<div class="container"></div>`
-            };
-            document.getElementById('content').innerHTML = content[section];
-        }
-        
-        // Ensure scripts are outside dynamic content
-        document.addEventListener('DOMContentLoaded', function() {
-            // Firebase initialization (place this in app.js)
+
+    <div id="content1">
+        <div class="container">
+        <div class="itineraries">
+            <div class="itinerary">
+                <img src="itinerary1.jpg" alt="Itinerary 1">
+                <h2>Itinerary 1</h2>
+                <p>Duration</p>
+                <input type="text">
+                <p>Days</p>
+                <input type="text">
+                <p>No. of Locations</p>
+                <input type="text">
+                <button>Save Changes</button>
+            </div>
+
+            <div class="itinerary">
+                <img src="itinerary2.jpg" alt="Itinerary 2">
+                <h2>Itinerary 2</h2>
+                <p>Duration</p>
+                <input type="text">
+                <p>Days</p>
+                <input type="text">
+                <p>No. of Locations</p>
+                <input type="text">
+                <button>Save Changes</button>
+            </div>
+
+            <div class="itinerary">
+                <img src="itinerary3.jpg" alt="Itinerary 3">
+                <h2>Itinerary 3</h2>
+                <p>Duration</p>
+                <input type="text">
+                <p>Days</p>
+                <input type="text">
+                <p>No. of Locations</p>
+                <input type="text">
+                <button>Save Changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="content3">
+        <div class="container">
+            <h2>Vehicle List</h2>
+            <table id="vehicleTable" style="border: 1;">
+                <thead>
+                    <tr>
+                        <th>Vehicle ID</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+    
+            <h3>Add Vehicle</h3>
+            <form id="addVehicleForm">
+                <label for="vehicleId">Vehicle ID:</label>
+                <input type="text" id="vehicleId" name="vehicleId" required>
+                <br>
+                <label for="make">Make:</label>
+                <input type="text" id="make" name="make" required>
+                <br>
+                <label for="model">Model:</label>
+                <input type="text" id="model" name="model" required>
+                <br>
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year" required>
+                <br><br>
+                <button type="submit">Add Vehicle</button>
+            </form>
+        </div>
+    
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="app.js" type="module"></script>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Firebase initialization
             const firebaseConfig = {
-                apiKey: "YOUR_API_KEY",
-                authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-                projectId: "YOUR_PROJECT_ID",
-                storageBucket: "YOUR_PROJECT_ID.appspot.com",
-                messagingSenderId: "YOUR_SENDER_ID",
-                appId: "YOUR_APP_ID",
+                apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
+                authDomain: "monsoontours-65f1e.firebaseapp.com",
+                projectId: "monsoontours-65f1e",
+                storageBucket: "monsoontours-65f1e.appspot.com",
+                messagingSenderId: "378330088807",
+                appId: "1:378330088807:web:217c00702fc17fea671bc2",
+                measurementId: "G-L4V5MLH9KD"
             };
-        
+
             const app = firebase.initializeApp(firebaseConfig);
             const db = firebase.firestore();
-            
+
             // Further Firebase-related operations go here
         });
-        </script>
-    </body>
+    </script> -->
+</body>
 
 </html>
