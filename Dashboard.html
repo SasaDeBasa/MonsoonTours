@@ -105,6 +105,18 @@
         .itinerary button:hover {
             background-color: #888;
         }
+        .faq-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .faq-list-item button {
+            margin-left: 5px;
+        }
     </style>
 </head>
 
@@ -148,7 +160,7 @@
         </div>
     </nav>
 <div class="pagemeow">
-    <div id="content1"></div>
+    <div id="content1">
         <div class="container">
             <!-- Plus sign button to add new itinerary -->
             <button id="addItineraryBtn">+ Add Itinerary</button>
@@ -198,7 +210,30 @@
         </div>
     
     </div>
+
+    <!--FAQ MANAGE AREA--> 
+
+    <div class="container mt-5">
+        <h3>Add a New FAQ</h3>
+        <form id="addFaqForm">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Question" id="faqQuestion" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Answer" id="faqAnswer" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Add FAQ</button>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <h3>Manage FAQs</h3>
+        <div id="faqList"></div>
+    </div>
+
 </div>
+
+
     
     
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
