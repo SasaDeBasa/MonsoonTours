@@ -209,7 +209,31 @@
         </div>
     
     </div>
+    <div class="content4">
+        <h2>Driver Management</h2>
+    
+        <table id="driverTable">
+            <thead>
+                <tr>
+                    <th>NIC (National ID)</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Initial empty row for adding a new driver -->
+                <tr>
+                    <td><input type="text" id="nicInput" placeholder="Enter NIC"></td>
+                    <td><input type="text" id="nameInput" placeholder="Enter Name"></td>
+                    <td><input type="tel" id="phoneInput" placeholder="Enter Phone Number"></td>
+                    <td><button id="saveBtn">Save Changes</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <script src="driverManagement.js" type="module"></script>
     <!--FAQ MANAGE AREA--> 
 
     <div class="container mt-5">
