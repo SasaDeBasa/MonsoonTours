@@ -229,31 +229,17 @@
         <h3>Manage FAQs</h3>
         <div id="faqList"></div>
     </div>
+    
 
 </div>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script src="app_FAQ.js" type="module"></script>
     <script src="app.js" type="module"></script>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Firebase initialization
-            const firebaseConfig = {
-                apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
-                authDomain: "monsoontours-65f1e.firebaseapp.com",
-                projectId: "monsoontours-65f1e",
-                storageBucket: "monsoontours-65f1e.appspot.com",
-                messagingSenderId: "378330088807",
-                appId: "1:378330088807:web:217c00702fc17fea671bc2",
-                measurementId: "G-L4V5MLH9KD"
-            };
-
-            const app = firebase.initializeApp(firebaseConfig);
-            const db = firebase.firestore();
-
-            // Further Firebase-related operations go here
-        });
-    </script> -->
+    <script type="module">
+        import { deleteFAQ } from './deleteFAQs.js';
+        window.deleteFAQ = deleteFAQ; // Expose the function globally
+    </script>
 </body>
 
 </html>

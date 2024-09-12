@@ -35,8 +35,7 @@ function renderFAQs(faqs) {
                 <p>${faqData.answer}</p>
             </div>
             <div>
-                <button class="btn btn-warning btn-sm" onclick="editFAQ('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteFAQ('${faqId}')">Delete</button>
+                <button class="btn btn-danger btn-sm" style="background-color: black" onclick="deleteFAQ('${faqId}')">Delete</button>
             </div>
         `;
 
@@ -79,15 +78,7 @@ async function updateFAQ() {
     }
 }
 
-// Function to delete an FAQ
-async function deleteFAQ(id) {
-    try {
-        const faqDoc = doc(db, 'faqs', id);
-        await deleteDoc(faqDoc);
-    } catch (error) {
-        console.error("Error deleting FAQ: ", error);
-    }
-}
+
 
 // Function to add a new FAQ
 async function addFAQ(question, answer) {
