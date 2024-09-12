@@ -186,12 +186,12 @@
 
 <body>
     <div class="sidebar">
-        <button href="#content1"><img src="/assets/icons/Packages.svg" alt="Tours">Tours</button>
-        <button href="#content2"><img src="/assets/icons/Bookings.svg" alt="Bookings">Bookings</button>
-        <button href="#content3"><img src="/assets/icons/vehicles.svg" alt="Vehicles">Vehicles</button>
-        <button href="#content4"><img src="/assets/icons/drivers.svg" alt="Drivers">Drivers</button>
-        <button href="#content5"><img src="/assets/icons/reviews.svg" alt="Reviews">Reviews</button>
-        <button href="#content6"><img src="/assets/icons/FAQs.svg" alt="Customer Support">FAQs</button>
+        <a href="#content1"><button href="#content1"><img src="/assets/icons/Packages.svg" alt="Tours">Tours</button></a>
+        <a href="#content2"><button href="#content2"><img src="/assets/icons/Bookings.svg" alt="Bookings">Bookings</button></a>
+        <a href="#content3"><button href="#content3"><img src="/assets/icons/vehicles.svg" alt="Vehicles">Vehicles</button></a>
+        <a href="#content4"><button href="#content4"><img src="/assets/icons/drivers.svg" alt="Drivers">Drivers</button></a>
+        <a href="#content5"><button href="#content5"><img src="/assets/icons/reviews.svg" alt="Reviews">Reviews</button></a>
+        <a href="#content6"><button href="#content6"><img src="/assets/icons/FAQs.svg" alt="Customer Support">FAQs</button></a>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -238,7 +238,7 @@
         <!-- Include this script to handle the dynamic itinerary addition -->
         <script src="app_manageTours.js" type="module"></script>
 
-        <div class="content3">
+        <div class="content3" id="content3">
             <div class="container">
                 <h2>Vehicle List</h2>
                 <table id="vehicleTable" border="1">
@@ -274,7 +274,7 @@
             </div>
         </div>
 
-        <div style="margin-left: 140px;" class="content4">
+        <div id="content4" style="margin-left: 140px;" class="content4">
             <h2>Driver Management</h2>
             <table  id="driverTable">
                 <thead>
@@ -300,7 +300,7 @@
         <script src="driverManagement.js" type="module"></script>
 
         <!--FAQ MANAGE AREA-->
-        <div class="container mt-5">
+        <div class="container mt-5" id="content5">
             <h3>Add a New FAQ</h3>
             <form id="addFaqForm">
                 <div class="form-group">
