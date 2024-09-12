@@ -54,11 +54,29 @@ const firebaseConfig = {
     const cell2 = row.insertCell(1);
     const cell3 = row.insertCell(2);
     const cell4 = row.insertCell(3);
+    const cell5 = row.insertCell(4);
   
     cell1.innerHTML = doc.id;
     cell2.innerHTML = doc.data().make;
     cell3.innerHTML = doc.data().model;
     cell4.innerHTML = doc.data().year;
+
+     // Create and append the delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "Delete";
+    deleteButton.setAttribute("data-id", doc.id); // Set the vehicle document ID
+    deleteButton.classList.add('delete-btn'); // Add a class for styling if needed
+    cell5.appendChild(deleteButton);
+
+    deleteButton.addEventListener('click', async () => {
+      const vehicleId = deleteButton.getAttribute("data-id");
+      try {
+        await vehicleRef.doc(vehicleId).delete(); // Delete the document from Firestore
+        alert(`Vehicle ${vehicleId} deleted successfully!`);
+      } catch (error) {
+        console.error("Error deleting vehicle: ", error);
+      }
+    });
   }
   
   // Real-time Listener for Vehicle Collection
@@ -80,7 +98,7 @@ const firebaseConfig = {
 
    //Taxi
 
-   
+
    //Tour
    //Contact
    //Profile
