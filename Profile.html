@@ -55,6 +55,7 @@
             border-radius: 10px;
             margin-top: 50px;
             color: white;
+            position: relative;
         }
         .profile-header {
             display: flex;
@@ -95,6 +96,23 @@
             color: white;
             cursor: pointer;
         }
+        .btn-book-tour {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #f58220;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn-book-tour:hover {
+            background-color: #e67300;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -129,6 +147,7 @@
 
     <!-- Profile Container -->
     <div class="container profile-container">
+        <button class="btn-book-tour" onclick="window.location.href='bookTour.html'">Book a Tour</button>
         <div class="profile-header">
             <div><img id="ProfileUser" src="assets/icons/user.svg" alt=""></div>
             <div style="padding-left: 30px;" class="profile-info">
@@ -208,21 +227,4 @@
                 <a href="#" class="social-media-link">Twitter</a>
                 <a href="#" class="social-media-link">Instagram</a>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="Home.html">Home</a>
-                <a href="Taxi.html">Taxi Services</a>
-                <a href="Tour.html">Tour Services</a>
-                <a href="Contact.html">Contact</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+           
