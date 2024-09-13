@@ -34,12 +34,14 @@ const firebaseConfig = {
     const make = document.getElementById("make").value;
     const model = document.getElementById("model").value;
     const year = document.getElementById("year").value;
+    const passengers = document.getElementById("passengers").value;
   
     try {
       await vehicleRef.doc(vehicleId).set({
         make: make,
         model: model,
-        year: year
+        year: year,
+        passengers: passengers
       });
       alert("Vehicle added successfully!");
       document.getElementById("addVehicleForm").reset(); // Clear form fields
@@ -58,18 +60,20 @@ const firebaseConfig = {
     const cell3 = row.insertCell(2);
     const cell4 = row.insertCell(3);
     const cell5 = row.insertCell(4);
+    const cell6 = row.insertCell(5);
   
     cell1.innerHTML = doc.id;
     cell2.innerHTML = doc.data().make;
     cell3.innerHTML = doc.data().model;
     cell4.innerHTML = doc.data().year;
+    cell5.innerHTML = doc.data().passengers;
 
      // Create and append the delete button
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
     deleteButton.setAttribute("data-id", doc.id); // Set the vehicle document ID
     deleteButton.classList.add('delete-btn'); // Add a class for styling if needed
-    cell5.appendChild(deleteButton);
+    cell6.appendChild(deleteButton);
 
     deleteButton.addEventListener('click', async () => {
       const vehicleId = deleteButton.getAttribute("data-id");
