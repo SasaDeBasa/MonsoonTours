@@ -35,7 +35,9 @@ function renderFAQs(faqs) {
                 <p>${faqData.answer}</p>
             </div>
             <div>
-                <button class="btn btn-danger btn-sm" style="background-color: black" onclick="deleteFAQ('${faqId}')">Delete</button>
+                <button onclick="populateEditForm('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
+                <button onclick="deleteFAQ('${faqId}')">Delete</button>
+
             </div>
         `;
 
@@ -53,30 +55,7 @@ window.editFAQ = function(id, question, answer) {
     document.getElementById('editFaqForm').style.display = 'block'; // Show edit form
 };
 
-// Function to update an FAQ
-async function updateFAQ() {
-    const id = document.getElementById('faqId').value;
-    const question = document.getElementById('faqQuestion').value;
-    const answer = document.getElementById('faqAnswer').value;
 
-    try {
-        const faqDoc = doc(db, 'faqs', id);
-        await updateDoc(faqDoc, {
-            question: question,
-            answer: answer
-        });
-
-        // Clear and hide edit form
-        document.getElementById('faqId').value = '';
-        document.getElementById('faqQuestion').value = '';
-        document.getElementById('faqAnswer').value = '';
-        document.getElementById('editFaqForm').style.display = 'none'; // Hide edit form
-        document.getElementById('addFaqForm').style.display = 'block'; // Show add form
-        
-    } catch (error) {
-        console.error("Error updating FAQ: ", error);
-    }
-}
 
 
 

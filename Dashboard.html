@@ -321,6 +321,18 @@
             <h3>Manage FAQs</h3>
             <div id="faqList"></div>
         </div>
+
+        <form id="editFaqForm" style="display: none;">
+            <input type="hidden" id="faqId"> <!-- Hidden field to store FAQ ID -->
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Question" id="faqQuestion" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Answer" id="faqAnswer" required></textarea>
+            </div>
+            <!-- Save Changes button -->
+            <button class="btn btn-primary" type="submit">Save Changes</button> 
+        </form>               
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -331,6 +343,43 @@
         import { deleteFAQ } from './deleteFAQs.js';
         window.deleteFAQ = deleteFAQ; // Expose the function globally
     </script>
+    <script type="module">
+        import { editFAQ } from './editFAQs.js';
+        window.editFAQ = editFAQ; // Expose the function globally
+    </script>
+    <script type="module">
+        import { editFAQ } from './editFAQs.js';  // Import the editFAQ function
+                
+        // Add event listener for edit form submission
+        document.getElementById('editFaqForm').addEventListener('submit', async function(event) {
+            event.preventDefault();  // Prevent form from reloading the page
+
+            // Retrieve values from form inputs
+            const faqId = document.getElementById('faqId').value;  // Get FAQ ID from hidden field
+            const updatedQuestion = document.getElementById('faqQuestion').value;  // Get updated question
+            const updatedAnswer = document.getElementById('faqAnswer').value;  // Get updated answer
+
+            // Check if faqId, question, and answer are not empty
+            if (!faqId || !updatedQuestion || !updatedAnswer) {
+                alert("Please ensure all fields are filled correctly.");
+                return;
+            }
+
+            // Update the FAQ in Firestore
+            await editFAQ(faqId, updatedQuestion, updatedAnswer);  // Call the editFAQ function to update the document
+
+            // Clear the form fields
+            document.getElementById('faqQuestion').value = '';  // Clear question field
+            document.getElementById('faqAnswer').value = '';    // Clear answer field
+
+            // Toggle form visibility
+            document.getElementById('addFaqForm').style.display = 'block';  // Show add form again
+            document.getElementById('editFaqForm').style.display = 'none';  // Hide edit form
+        });
+
+    </script>
+    
+    
 </body>
 
 </html>
