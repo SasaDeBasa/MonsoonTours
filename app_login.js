@@ -1,7 +1,6 @@
-// Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-import { getFirestore, collection, getDocs, query, where, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, setPersistence, browserSessionPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, where, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -20,40 +19,52 @@ const auth = getAuth(app);
 auth.languageCode = 'en';
 const db = getFirestore(app);
 
-// Google Auth Provider
-const provider = new GoogleAuthProvider();
-
-// Handle Google login button click
-const googleLogin = document.getElementById("google-login-btn");
-googleLogin.addEventListener("click", async () => {
-    try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-
-        // Check if user exists in Firestore, if not, create a new user document
-        const userRef = doc(db, "user", user.uid);
-        const docSnap = await getDoc(userRef);
-
-        if (!docSnap.exists()) {
-            // User doesn't exist, create new user in Firestore
-            await setDoc(userRef, {
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName || "",
-                photoURL: user.photoURL || "",
-                provider: "google"
-            });
-        }
-
-        alert("Google login successful!");
-
-        // Redirect to homepage after successful login
-        window.location.href = "Home.html";
-    } catch (error) {
-        console.error("Error logging in with Google:", error);
-        alert("Google login failed. Please try again.");
+// Check if the user is already logged in
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, redirect to profile page
+        window.location.href = "profile.html";
     }
 });
+
+// Set session persistence mode
+setPersistence(auth, browserSessionPersistence)
+    .then(() => {
+        // Handle Google login button click
+        const googleLogin = document.getElementById("google-login-btn");
+        googleLogin.addEventListener("click", async () => {
+            try {
+                const result = await signInWithPopup(auth, new GoogleAuthProvider());
+                const user = result.user;
+
+                // Check if user exists in Firestore, if not, create a new user document
+                const userRef = doc(db, "user", user.uid);
+                const docSnap = await getDoc(userRef);
+
+                if (!docSnap.exists()) {
+                    // User doesn't exist, create new user in Firestore
+                    await setDoc(userRef, {
+                        uid: user.uid,
+                        email: user.email,
+                        displayName: user.displayName || "",
+                        photoURL: user.photoURL || "",
+                        provider: "google"
+                    });
+                }
+
+                alert("Google login successful!");
+
+                // Redirect to profile page after successful login
+                window.location.href = "profile.html";
+            } catch (error) {
+                console.error("Error logging in with Google:", error);
+                alert("Google login failed. Please try again.");
+            }
+        });
+    })
+    .catch((error) => {
+        console.error("Error setting session persistence:", error);
+    });
 
 // Handle form submission for email/password login
 document.getElementById("loginForm").addEventListener("submit", async (event) => {
@@ -81,8 +92,8 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
         if (userDoc.exists()) {
             alert("Login successful!");
 
-            // Redirect to homepage
-            window.location.href = "Home.html";
+            // Redirect to profile page after successful login
+            window.location.href = "profile.html";
         } else {
             alert("User not found in the database.");
         }
