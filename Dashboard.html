@@ -234,7 +234,24 @@
             </div>
         </div>
         
-
+        <div id="content2">
+            <table id="BookingsTable" class="table table-bordered">
+                <thead>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User ID</th>
+                            <th>Package Name</th>
+                            <th>Booking Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <script src="admin_manageBookings.js" type="module"></script>
+                </tbody>
+            </table>
+        </div>
         <!-- Include this script to handle the dynamic itinerary addition -->
         <script src="app_manageTours.js" type="module"></script>
 
@@ -332,7 +349,25 @@
             </div>
             <!-- Save Changes button -->
             <button class="btn btn-primary" type="submit">Save Changes</button> 
-        </form>               
+        </form>  
+        <div class="content7" id="content7">
+            <div>
+                <input type="text" id="uidSearch" placeholder="Search by UID" />
+                <button id="searchButton">Search</button>
+            </div>
+            <table id="UserTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script src="admin_manageUsers.js" type="module"></script>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
