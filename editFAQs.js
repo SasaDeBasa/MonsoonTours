@@ -1,6 +1,6 @@
-// Import Firebase functions
+// Import Firebase functions from the latest version
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -17,32 +17,63 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Function to edit an FAQ
-export async function editFAQ(faqId, updatedQuestion, updatedAnswer) {
+// Function to populate the addFaqForm with the selected FAQ data
+window.populateEditForm = function (faqId, question, answer) {
+    // Set the values in the form fields
+    document.getElementById('faqQuestion').value = question;
+    document.getElementById('faqAnswer').value = answer;
+
+    // Store the faqId in a hidden field for later use
+    document.getElementById('faqId').value = faqId;
+
+    // Change the form button text to "Update FAQ"
+    const submitButton = document.querySelector('#addFaqForm button[type="submit"]');
+    submitButton.textContent = "Update FAQ";
+
+    // Change the form heading to "Modify FAQ"
+    const formHeading = document.querySelector('#content5 h3');
+    formHeading.textContent = "Modify FAQ";
+};
+
+// Function to update the FAQ in Firestore
+async function updateFAQ(faqId, updatedQuestion, updatedAnswer) {
     try {
-        const faqDoc = doc(db, 'faqs', faqId);  // Reference the specific FAQ document by its ID
-        await updateDoc(faqDoc, {
-            question: updatedQuestion,  // Update the question field
-            answer: updatedAnswer       // Update the answer field
+        // Get reference to the specific FAQ document
+        const faqRef = doc(db, 'faqs', faqId);
+
+        // Update the document with new values
+        await updateDoc(faqRef, {
+            question: updatedQuestion,
+            answer: updatedAnswer
         });
-        alert('FAQ updated successfully');
+
+        alert("FAQ updated successfully!");
+
+        // Reset form and button text after update
+        document.getElementById('addFaqForm').reset();
+        const submitButton = document.querySelector('#addFaqForm button[type="submit"]');
+        submitButton.textContent = "Add FAQ";
+
+        // Revert the form heading to "Add a New FAQ"
+        const formHeading = document.querySelector('#content5 h3');
+        formHeading.textContent = "Add a New FAQ";
     } catch (error) {
         console.error("Error updating FAQ: ", error);
-        alert("There was an error updating the FAQ. Please try again.");
     }
 }
 
+// Handle form submission for updating the FAQ
+document.getElementById('addFaqForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-// Function to populate the form fields for editing
-export function populateEditForm(faqId, question, answer) {
-    // Populate form fields
-    document.getElementById('faqId').value = faqId;  // Set hidden field with FAQ ID
-    document.getElementById('faqQuestion').value = question;  // Populate question field
-    document.getElementById('faqAnswer').value = answer;  // Populate answer field
+    const faqId = document.getElementById('faqId').value;
+    const updatedQuestion = document.getElementById('faqQuestion').value;
+    const updatedAnswer = document.getElementById('faqAnswer').value;
 
-    // Toggle visibility of the forms
-    document.getElementById('addFaqForm').style.display = 'none';  // Hide add form
-    document.getElementById('editFaqForm').style.display = 'block';  // Show edit form
-}
-
-
+    // Check if we're updating (faqId exists), otherwise, it's an add
+    if (faqId) {
+        updateFAQ(faqId, updatedQuestion, updatedAnswer);
+    } else {
+        // Handle the add case here if necessary
+    }
+});

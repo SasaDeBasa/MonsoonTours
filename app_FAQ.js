@@ -20,43 +20,29 @@ const db = getFirestore(app);
 // Function to render FAQs
 function renderFAQs(faqs) {
     const faqList = document.getElementById('faqList');
-    faqList.innerHTML = ''; // Clear existing FAQs
+
+    // Clear existing FAQs before rendering new ones
+    faqList.innerHTML = '';
 
     faqs.forEach((doc) => {
-        const faqData = doc.data();
-        const faqId = doc.id;
+        const faqData = doc.data(); // Get FAQ data from the document snapshot
+        const faqId = doc.id; // Get the FAQ document ID
 
         const faqItem = document.createElement('div');
-        faqItem.classList.add('faq-list-item');
+        faqItem.classList.add('faq-item');
 
+        // Create HTML for FAQ item
         faqItem.innerHTML = `
-            <div>
-                <strong>${faqData.question}</strong>
-                <p>${faqData.answer}</p>
-            </div>
-            <div>
-                <button onclick="populateEditForm('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
-                <button onclick="deleteFAQ('${faqId}')">Delete</button>
-
-            </div>
+            <h4>${faqData.question}</h4>
+            <p>${faqData.answer}</p>
+            <button onclick="populateEditForm('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
+            <button onclick="deleteFAQ('${faqId}')">Delete</button>
         `;
 
+        // Append the new FAQ item to the list
         faqList.appendChild(faqItem);
     });
 }
-
-// Function to handle FAQ editing
-window.editFAQ = function(id, question, answer) {
-    document.getElementById('faqId').value = id;
-    document.getElementById('faqQuestion').value = question;
-    document.getElementById('faqAnswer').value = answer;
-
-    document.getElementById('addFaqForm').style.display = 'none'; // Hide add form
-    document.getElementById('editFaqForm').style.display = 'block'; // Show edit form
-};
-
-
-
 
 
 // Function to add a new FAQ
@@ -82,17 +68,17 @@ onSnapshot(faqCollection, (snapshot) => {
 // Handle form submission for adding FAQ
 document.getElementById('addFaqForm').addEventListener('submit', function(event) {
     event.preventDefault();
+    const faqId = document.getElementById('faqId').value;
     const question = document.getElementById('faqQuestion').value;
     const answer = document.getElementById('faqAnswer').value;
+    
+   
     addFAQ(question, answer);
+
+    // console.log("FAQ ID:", faqId);
+    // console.log("Question:", faqQuestion);
+    // console.log("Answer:", faqAnswer);
+    
     document.getElementById('faqQuestion').value = '';
     document.getElementById('faqAnswer').value = '';
-});
-
-
-
-// Handle form submission for editing FAQ
-document.getElementById('editFaqForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    updateFAQ();
 });
