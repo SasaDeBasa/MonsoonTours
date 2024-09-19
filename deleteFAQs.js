@@ -27,3 +27,31 @@ export async function deleteFAQ(faqId) {
         console.error("Error deleting FAQ: ", error);
     }
 }
+
+
+// Function to find and delete documents with undefined or missing fields
+async function deleteDocumentsWithUndefinedFields() {
+    try {
+        // Query to find documents in the collection
+        const q = query(collection(db, "yourCollection"));
+
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (docSnapshot) => {
+            const docData = docSnapshot.data();
+            const docId = docSnapshot.id;
+
+            // Check if the specific field is undefined or missing
+            if (docData.yourField === undefined || docData.yourField === null) {
+                console.log(`Deleting document with ID: ${docId}`);
+
+                // Delete the document
+                await deleteDoc(doc(db, "yourCollection", docId));
+            }
+        });
+    } catch (error) {
+        console.error("Error deleting documents: ", error);
+    }
+}
+
+// Call the function to execute
+deleteDocumentsWithUndefinedFields();

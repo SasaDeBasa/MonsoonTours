@@ -35,8 +35,11 @@ function renderFAQs(faqs) {
         faqItem.innerHTML = `
             <h4>${faqData.question}</h4>
             <p>${faqData.answer}</p>
-            <button onclick="populateEditForm('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
-            <button onclick="deleteFAQ('${faqId}')">Delete</button>
+            <div style="padding-bottom: 5px;"">
+                <button onclick="populateEditForm('${faqId}', '${faqData.question}', '${faqData.answer}')">Edit</button>
+                <button onclick="deleteFAQ('${faqId}')">Delete</button>
+            </div>
+            
         `;
 
         // Append the new FAQ item to the list

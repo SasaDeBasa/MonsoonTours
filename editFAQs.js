@@ -26,9 +26,32 @@ window.populateEditForm = function (faqId, question, answer) {
     // Store the faqId in a hidden field for later use
     document.getElementById('faqId').value = faqId;
 
-    // Change the form button text to "Update FAQ"
+    // Disable the existing submit button
     const submitButton = document.querySelector('#addFaqForm button[type="submit"]');
-    submitButton.textContent = "Update FAQ";
+    submitButton.disabled = true;
+
+    // Check if the Save Changes button already exists
+    let saveButton = document.getElementById('saveChangesButton');
+    if (!saveButton) {
+        // Create and add the Save Changes button
+        saveButton = document.createElement('button');
+        saveButton.type = 'button';
+        saveButton.textContent = 'Save Changes';
+        saveButton.id = 'saveChangesButton';
+        saveButton.type = 'hi';
+        saveButton.addEventListener('click', function() {
+            const faqId = document.getElementById('faqId').value;
+            const updatedQuestion = document.getElementById('faqQuestion').value;
+            const updatedAnswer = document.getElementById('faqAnswer').value;
+            if (faqId) {
+                updateFAQ(faqId, updatedQuestion, updatedAnswer);
+            }
+        });
+
+        // Append the Save Changes button to the form
+        const form = document.getElementById('addFaqForm');
+        form.appendChild(saveButton);
+    }
 
     // Change the form heading to "Modify FAQ"
     const formHeading = document.querySelector('#content5 h3');
@@ -66,14 +89,21 @@ async function updateFAQ(faqId, updatedQuestion, updatedAnswer) {
 document.getElementById('addFaqForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const faqId = document.getElementById('faqId').value;
-    const updatedQuestion = document.getElementById('faqQuestion').value;
-    const updatedAnswer = document.getElementById('faqAnswer').value;
+    document.getElementById('saveChangesButton').addEventListener('submit', function(event){
+        const element = document.getElementById('saveChangesButton');
+        
+        const faqId = document.getElementById('faqId').value;
+        const updatedQuestion = document.getElementById('faqQuestion').value;
+        const updatedAnswer = document.getElementById('faqAnswer').value;
 
-    // Check if we're updating (faqId exists), otherwise, it's an add
-    if (faqId) {
-        updateFAQ(faqId, updatedQuestion, updatedAnswer);
-    } else {
-        // Handle the add case here if necessary
-    }
+        // Check if we're updating (faqId exists), otherwise, it's an add
+        if (faqId) {
+            updateFAQ(faqId, updatedQuestion, updatedAnswer);
+        } else {
+            // Handle the add case here if necessary
+        }
+        element.remove();
+    });
+
+    
 });
