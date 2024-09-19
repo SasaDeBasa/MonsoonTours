@@ -31,7 +31,7 @@ async function fetchAndDisplayUsers() {
             console.log('User data:', userData); // Log each user's data
             const userRow = document.createElement('tr');
             userRow.innerHTML = `
-                <td>${userData.username || 'Unknown'}</td>
+                <td>${userData.username || userData.displayName || 'Unknown'}</td>
                 <td>${userData.email || 'N/A'}</td>
                 <td>${userData.contact || 'N/A'}</td>
             `;

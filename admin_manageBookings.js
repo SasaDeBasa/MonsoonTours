@@ -47,7 +47,7 @@ async function fetchAndDisplayBookings() {
                 const bookingRow = document.createElement('tr');
                 bookingRow.innerHTML = `
                     <td>${index}</td>
-                    <td>${userData.username || 'Unknown'}</td>
+                    <td>${userData.username || userData.displayName || 'Unknown'}</td>
                     <td>${packageData.packageName}</td>
                     <td>${new Date(bookingData.bookedAt).toLocaleDateString()}</td>
                     <td>
