@@ -19,11 +19,23 @@ const auth = getAuth(app);
 auth.languageCode = 'en';
 const db = getFirestore(app);
 
+// Function to redirect the user to the previous page or default page
+function redirectToPreviousPage() {
+    const referrer = document.referrer;
+
+    // Redirect to the referrer page if available, otherwise go to homepage
+    if (referrer && referrer !== window.location.href) {
+        window.location.href = referrer;
+    } else {
+        window.location.href = "Home.html"; // Default to homepage if no referrer
+    }
+}
+
 // Check if the user is already logged in
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in, redirect to profile page
-        window.location.href = "profile.html";
+        // User is signed in, redirect to the previous page or homepage
+        redirectToPreviousPage();
     }
 });
 
@@ -54,8 +66,8 @@ setPersistence(auth, browserSessionPersistence)
 
                 alert("Google login successful!");
 
-                // Redirect to profile page after successful login
-                window.location.href = "profile.html";
+                // Redirect to the previous page or homepage after successful login
+                redirectToPreviousPage();
             } catch (error) {
                 console.error("Error logging in with Google:", error);
                 alert("Google login failed. Please try again.");
@@ -92,8 +104,8 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
         if (userDoc.exists()) {
             alert("Login successful!");
 
-            // Redirect to profile page after successful login
-            window.location.href = "profile.html";
+            // Redirect to the previous page or homepage after successful login
+            redirectToPreviousPage();
         } else {
             alert("User not found in the database.");
         }
@@ -102,3 +114,4 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
         alert("Login failed. Please check your credentials and try again.");
     }
 });
+

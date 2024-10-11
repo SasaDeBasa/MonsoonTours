@@ -1,6 +1,6 @@
 // Firebase Initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 // Firebase config
@@ -25,61 +25,74 @@ const profileEmail = document.getElementById("ProfileEmail");
 const profileContact = document.getElementById("ProfileContact");
 const profilePic = document.getElementById("ProfileUser");
 const editIcons = document.querySelectorAll(".edit-icon");
+const logoutBtn = document.getElementById("logoutBtn");
 
 // User info loading
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const userRef = doc(db, "user", user.uid);
-      const docSnap = await getDoc(userRef);
-  
-      if (docSnap.exists()) {
-        // If the user signed up with Google
-        if (user.providerData[0].providerId === "google.com") {
-          profileName.textContent = docSnap.data().displayName || "N/A";
-          profileEmail.textContent = docSnap.data().email;
-          profileContact.textContent = "N/A";  // Google users may not have contact info
-          profilePic.src = docSnap.data().photoURL || "assets/icons/user.svg";  // Update profile picture
-        } else {
-          // For regular registration
-          profileName.textContent = docSnap.data().username || "N/A";
-          profileEmail.textContent = docSnap.data().email;
-          profileContact.textContent = docSnap.data().contact || "N/A";
-          profilePic.src = "assets/icons/user.svg";  // Default icon for non-Google users
+        const userRef = doc(db, "user", user.uid);
+        const docSnap = await getDoc(userRef);
+
+        if (docSnap.exists()) {
+            // If the user signed up with Google
+            if (user.providerData[0].providerId === "google.com") {
+                profileName.textContent = docSnap.data().displayName || "N/A";
+                profileEmail.textContent = docSnap.data().email;
+                profileContact.textContent = "N/A";  // Google users may not have contact info
+                profilePic.src = docSnap.data().photoURL || "assets/icons/user.svg";  // Update profile picture
+            } else {
+                // For regular registration
+                profileName.textContent = docSnap.data().username || "N/A";
+                profileEmail.textContent = docSnap.data().email;
+                profileContact.textContent = docSnap.data().contact || "N/A";
+                profilePic.src = "assets/icons/user.svg";  // Default icon for non-Google users
+            }
         }
-      }
     }
-  });
-  
+});
 
 // Allow editing profile info
 editIcons.forEach((icon) => {
-  icon.addEventListener("click", (e) => {
-    const field = e.target.previousElementSibling;
-    const currentValue = field.textContent;
-    const input = prompt("Edit this field:", currentValue);
+    icon.addEventListener("click", (e) => {
+        const field = e.target.previousElementSibling;
+        const currentValue = field.textContent;
+        const input = prompt("Edit this field:", currentValue);
 
-    if (input !== null) {
-      field.textContent = input;
-      saveProfileChanges(e.target.dataset.field, input);  // Save changes
-    }
-  });
+        if (input !== null) {
+            field.textContent = input;
+            saveProfileChanges(e.target.dataset.field, input);  // Save changes
+        }
+    });
 });
 
 // Save profile changes
 async function saveProfileChanges(field, value) {
-  const user = auth.currentUser;
-  const userRef = doc(db, "user", user.uid);
+    const user = auth.currentUser;
+    const userRef = doc(db, "user", user.uid);
 
-  // Update Firestore based on the field being edited
-  const updates = {};
-  updates[field] = value;
+    // Update Firestore based on the field being edited
+    const updates = {};
+    updates[field] = value;
 
-  await updateDoc(userRef, updates);
+    await updateDoc(userRef, updates);
 
-  // If the field is 'displayName', update Firebase Auth profile too
-  if (field === "displayName" || field === "username") {
-    await updateProfile(user, {
-      displayName: value
-    });
-  }
+    // If the field is 'displayName', update Firebase Auth profile too
+    if (field === "displayName" || field === "username") {
+        await updateProfile(user, {
+            displayName: value
+        });
+    }
 }
+
+// Logout functionality
+logoutBtn.addEventListener("click", async () => {
+    try {
+        await signOut(auth);  // Sign out the user
+        alert("You have successfully logged out.");
+        window.location.href = "Home.html";  // Redirect to home
+    } catch (error) {
+        console.error("Error logging out:", error);
+        alert("An error occurred while logging out. Please try again.");
+    }
+});
+

@@ -23,14 +23,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-// Vehicle images (randomly choose one)
-const vehicleImages = [
-    "assets/icons/car_5074283.svg", // car
-    "assets/icons/taxi_5074378.svg", // taxi
-    "assets/icons/minivan_6955505.svg" // minivan
-];
-
 // Function to fetch and display vehicles
 async function displayVehicles() {
     const itineraryContainer = document.getElementById("itinerary-container");
@@ -46,17 +38,18 @@ async function displayVehicles() {
             const make = vehicleData.make;
             const model = vehicleData.model;
             const passengers = vehicleData.passengers;
+            const imageUrl = vehicleData.imageUrl; // Get the image URL from the Firestore document
 
-            // Pick a random image
-            const randomImage = vehicleImages[Math.floor(Math.random() * vehicleImages.length)];
+            // Fallback image in case imageUrl is not provided
+            const vehicleImage = imageUrl || "assets/icons/default_vehicle_image.svg";
 
             // Create the vehicle card dynamically
             const cardHTML = `
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="itinerary-card">
                         <h5>${make} ${model}</h5>
-                        <img style="height: 100px; filter: invert(100%);" src="${randomImage}" alt="">
-                        <p>No. of Passengers : ${passengers}</p>
+                        <img style="height: 100px;" src="${vehicleImage}" alt="Vehicle Image">
+                        <p>No. of Passengers: ${passengers}</p>
                     </div>
                 </div>
             `;

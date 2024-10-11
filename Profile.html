@@ -113,6 +113,20 @@
             background-color: #e67300;
             transform: scale(1.1);
         }
+        .btn-logout{
+            background-color: red;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn-logout:hover{
+            background-color: rgb(145, 5, 5);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transform: scale(1.1);
+        }
     </style>
     <script src="profile.js" type="module"></script>
 </head>
@@ -149,13 +163,15 @@
     <!-- Profile Container -->
     <div class="container profile-container">
         <button class="btn-book-tour" onclick="window.location.href='bookTour.html'">More Tour Details</button>
+       
+
         <div class="profile-header">
             <div><img id="ProfileUser" src="assets/icons/user.svg" alt=""></div>
             <div style="padding-left: 30px;" class="profile-info">
                 <p>Name: <span id="ProfileName">Loading...</span> <i class="fas fa-pencil-alt edit-icon" data-field="username"></i></p>
                 <p>Email: <span id="ProfileEmail">Loading...</span> <i class="fas fa-pencil-alt edit-icon" data-field="email"></i></p>
                 <p>Contact: <span id="ProfileContact">Loading...</span> <i class="fas fa-pencil-alt edit-icon" data-field="contact"></i></p>
-
+                <button id="logoutBtn" class="btn-logout">Logout</button>
             </div>
         </div>
 
