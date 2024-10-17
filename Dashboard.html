@@ -189,7 +189,7 @@
             margin-left: 180px;
         }
         #content4{
-            margin-left: 160px; 
+            margin-left: 180px; 
         }
     </style>
 </head>
@@ -236,13 +236,16 @@
     </nav>
 
     <div class="pagemeow">
-        <div id="content1" class="section">
-            <div class="container d-flex" style="display: flex; align-items: flex-start; ">
-                <!-- Container for dynamically added tour packages -->
-                <div id="packageContainer" class="package-container d-flex" style="margin: 20px; display: flex; gap: 20px; flex-wrap: nowrap;"></div>
-                <!-- Plus sign button to add new tour package -->
-                <button id="addPackageBtn" class="btn btn-dark" style="margin: 20px; border-radius: 15px; height: fit-content; width: 80px; align-self: center;">+ Add Tour Package</button>
-            </div>
+        <div id="content1" class="section" style="margin-left: 180px;">
+            <div id="packageContainer" class="package-container"
+         style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px">
+        <!-- Tour packages will be dynamically added here -->
+    </div>
+    <!-- Plus sign button to add new tour package -->
+    <button id="addPackageBtn" class="btn btn-dark" 
+            style="grid-column: 1 / -1; margin: 20px; border-radius: 15px; height: fit-content; width: 80px;">
+        + Add Tour Package
+    </button>
         </div>
         
         <div id="content2" class="section" style="display: none;">
