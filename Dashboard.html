@@ -195,13 +195,14 @@
 </head>
 
 <body>
+    <script src="manageDashboardcontent.js"></script>
     <div class="sidebar">
-        <a href="#content1"><button href="#content1"><img src="/assets/icons/Packages.svg" alt="Tours">Tours</button></a>
-        <a href="#content2"><button href="#content2"><img src="/assets/icons/Bookings.svg" alt="Bookings">Bookings</button></a>
-        <a href="#content3"><button href="#content3"><img src="/assets/icons/vehicles.svg" alt="Vehicles">Vehicles</button></a>
-        <a href="#content4"><button href="#content4"><img src="/assets/icons/drivers.svg" alt="Drivers">Drivers</button></a>
-        <a href="#content6"><button href="#content6"><img src="/assets/icons/FAQs.svg" alt="Customer Support">FAQs</button></a>
-        <a href="#content5"><button href="#content5"><img src="/assets/icons/user.svg" style="filter: invert(100%);" alt="Reviews">Users</button></a>
+        <button onclick="showSection('content1')"><img src="/assets/icons/Packages.svg" alt="Tours">Tours</button>
+        <button onclick="showSection('content2')"><img src="/assets/icons/Bookings.svg" alt="Bookings">Bookings</button>
+        <button onclick="showSection('content3')"><img src="/assets/icons/vehicles.svg" alt="Vehicles">Vehicles</button>
+        <button onclick="showSection('content4')"><img src="/assets/icons/drivers.svg" alt="Drivers">Drivers</button>
+        <button onclick="showSection('content5')"><img src="/assets/icons/FAQs.svg" alt="FAQs">FAQs</button>
+        <button onclick="showSection('content6')"><img src="/assets/icons/user.svg" style="filter: invert(100%);"  alt="Users">Users</button>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -235,7 +236,7 @@
     </nav>
 
     <div class="pagemeow">
-        <div id="content1">
+        <div id="content1" class="section">
             <div class="container d-flex" style="display: flex; align-items: flex-start; ">
                 <!-- Container for dynamically added tour packages -->
                 <div id="packageContainer" class="package-container d-flex" style="margin: 20px; display: flex; gap: 20px; flex-wrap: nowrap;"></div>
@@ -244,7 +245,7 @@
             </div>
         </div>
         
-        <div id="content2">
+        <div id="content2" class="section" style="display: none;">
             <table id="BookingsTable" class="table table-bordered">
                 <thead>
                     <thead>
@@ -265,7 +266,7 @@
         <!-- Include this script to handle the dynamic itinerary addition -->
         <script src="app_manageTours.js" type="module"></script>
 
-        <div class="content3" id="content3">
+        <div id="content3" class="section" style="display: none;">
             <div class="container">
                 <h2>Vehicle List</h2>
                 <table id="vehicleTable" border="1">
@@ -308,7 +309,7 @@
             </div>
         </div>
 
-        <div id="content4" class="content4">
+        <div id="content4" class="section" style="display: none;">
             <h2>Driver Management</h2>
             <table  id="driverTable">
                 <thead>
@@ -333,8 +334,10 @@
 
         <script src="driverManagement.js" type="module"></script>
 
-        <!--FAQ MANAGE AREA-->
-        <div class="container mt-5" id="content5">
+        
+        <div  id="content5" class="section" style="display: none;">
+            <!--FAQ MANAGE AREA-->
+        <div class="container mt-5">
             <h3>Add a New FAQ</h3>
             <form id="addFaqForm">
                 <div class="form-group">
@@ -346,8 +349,7 @@
                 <button type="submit">Add FAQ</button>
             </form>
         </div>
-
-        <div class="container mt-5" style="margin-bottom: 100px;">
+             <div class="container mt-5" style="margin-bottom: 100px;">
             <h3>Manage FAQs</h3>
             <div id="faqList"></div>
         </div>
@@ -362,8 +364,10 @@
             </div>
             <!-- Save Changes button -->
             <button class="btn btn-primary" type="submit">Save Changes</button> 
-        </form>  
-        <div class="content7" id="content7">
+        </form>
+        </div>
+         
+        <div id="content7" class="section" style="display: none;">
             <div>
                 <input type="text" id="uidSearch" placeholder="Search by UID" />
                 <button id="searchButton">Search</button>
