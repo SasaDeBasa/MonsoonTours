@@ -1,4 +1,9 @@
-// Initialize Firebase
+// Initialize EmailJS with your user ID (public key)
+(function () {
+    emailjs.init("IZd13W-hrfkKHyqNL"); // Replace with your actual EmailJS public key (User ID)
+})();
+
+// Initialize Firebase (optional, if you're using Firebase)
 const firebaseConfig = {
     apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
     authDomain: "monsoontours-65f1e.firebaseapp.com",
@@ -9,35 +14,41 @@ const firebaseConfig = {
     measurementId: "G-L4V5MLH9KD"
 };
 
-// Initialize Firebase App
+// Initialize Firebase (if needed, otherwise comment this part)
 firebase.initializeApp(firebaseConfig);
 
-// Initialize EmailJS with the User ID for acc1 (sending email)
-emailjs.init("x5DF0-RSt3jTJ9Ytr"); // Replace with your actual User ID for acc1 from EmailJS dashboard
-
-// Function to send the email when the form is submitted
-document.querySelector("#contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form default submission
+// Function to handle form submission
+document.querySelector("#contactForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form submission from refreshing the page
 
     // Get form values
-    const name = document.querySelector('#name').value;
-    const email = document.querySelector('#email').value;
-    const message = document.querySelector('#message').value;
+    const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email").value;
+    const message = document.querySelector("#message").value;
 
-    // Prepare email template parameters
+    // Prepare email parameters for EmailJS
     const templateParams = {
         user_name: name,
         user_email: email,
         message: message,
-        recipient_email: "carcarerepairservices@gmail.com" // This is the recipient's email (acc2)
+        recipient_email: "carcarerepairservices@gmail.com" // Replace with your recipient email
     };
+
+    // Disable send button during submission
+    const sendMessageBtn = document.querySelector(".sendMessageBtn");
+    sendMessageBtn.disabled = true;
 
     // Send the email using EmailJS
     emailjs.send("service_ldz9bt2", "template_rxkn98j", templateParams)
-    .then(function(response) {
-        alert("Message sent successfully!");
-    }, function(error) {
-        console.error("Failed to send message: ", error);
-        alert("Failed to send message. Please try again.");
-    });
+        .then(function (response) {
+            alert("Message sent successfully!");
+            sendMessageBtn.disabled = false; // Re-enable the button after success
+
+            // Optionally, clear the form after successful submission
+            document.querySelector("#contactForm").reset();
+        }, function (error) {
+            console.error("Failed to send message: ", error);
+            alert("Failed to send message. Please try again.");
+            sendMessageBtn.disabled = false; // Re-enable the button after failure
+        });
 });
