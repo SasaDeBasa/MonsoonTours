@@ -17,17 +17,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Function to fetch and display all bookings for the admin
-async function fetchAndDisplayBookings() {
+// Set the number of rows to display per page
+const rowsPerPage = 8;
+let currentPage = 1;
+let totalBookings = 0; // Total number of bookings
+
+// Function to fetch and display paginated bookings
+async function fetchAndDisplayBookings(page = 1) {
     const bookingsRef = collection(db, 'bookings');
     const bookingsTableBody = document.querySelector("#BookingsTable tbody");
     bookingsTableBody.innerHTML = ''; // Clear existing rows
 
     try {
         const querySnapshot = await getDocs(bookingsRef);
-        let index = 1; // Manual index for numbering
+        totalBookings = querySnapshot.size;
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
 
-        querySnapshot.forEach(async (docSnapshot) => {
+        let index = 1; // Manual index for numbering
+        let displayedBookings = 0;
+
+        querySnapshot.docs.slice(startIndex, endIndex).forEach(async (docSnapshot, idx) => {
             const bookingData = docSnapshot.data();
             const bookingId = docSnapshot.id; // Document ID
 
@@ -46,7 +56,7 @@ async function fetchAndDisplayBookings() {
                 // Create table row for each booking
                 const bookingRow = document.createElement('tr');
                 bookingRow.innerHTML = `
-                    <td>${index}</td>
+                    <td>${startIndex + index}</td>
                     <td>${userData.username || userData.displayName || 'Unknown'}</td>
                     <td>${packageData.packageName}</td>
                     <td>${new Date(bookingData.bookedAt).toLocaleDateString()}</td>
@@ -74,24 +84,46 @@ async function fetchAndDisplayBookings() {
 
                 // Increment the index for the next row
                 index++;
+                displayedBookings++;
+            }
+
+            // Check if we've displayed enough rows for this page
+            if (displayedBookings >= rowsPerPage) {
+                return;
             }
         });
+
+        updatePaginationControls();
     } catch (error) {
         console.error('Error fetching bookings:', error);
     }
 }
 
-// Function to update the status of a booking
-async function updateBookingStatus(bookingId, newStatus) {
-    const bookingRef = doc(db, 'bookings', bookingId);
-    try {
-        await updateDoc(bookingRef, { status: newStatus });
-        alert('Booking status updated successfully!');
-    } catch (error) {
-        console.error('Error updating booking status:', error);
-        alert('Failed to update booking status.');
-    }
+// Function to update pagination controls
+function updatePaginationControls() {
+    const totalPages = Math.ceil(totalBookings / rowsPerPage);
+    const pageInfo = document.getElementById('pageInfo');
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage === totalPages;
 }
 
+// Event listeners for pagination buttons
+document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        fetchAndDisplayBookings(currentPage);
+    }
+});
+
+document.getElementById('nextPage').addEventListener('click', () => {
+    const totalPages = Math.ceil(totalBookings / rowsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        fetchAndDisplayBookings(currentPage);
+    }
+});
+
 // Fetch and display bookings when the page loads
-fetchAndDisplayBookings();
+fetchAndDisplayBookings(currentPage);
