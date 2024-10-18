@@ -7,7 +7,23 @@
     <title>HomePage - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    
+    <style>
+        .bookBtn {
+            color: white;
+            border: 1px;
+            background-color: rgba(255, 115, 0, 0.429);
+            height: 40px;
+            width: 120px;
+            border-radius: 10px;
+        }
+
+        .bookBtn:hover {
+            background-color: rgb(255, 98, 0);
+            color: black;
+        }
+
+    </style>
+
 </head>
 <body style="background: url('assets/pics/Home.jpg') no-repeat center fixed;background-color: #333;color: white;">
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -40,15 +56,16 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-section">
+    <div style="padding-left: 2rem; padding-right: 2rem;" class="hero-section">
         <div class="content">
             <h1>Elevate Your Travel Experience</h1>
             <h6 style="margin-left: 200px; margin-right: 200px; padding-top: 30px;">Savor the extraordinary with our carefully crafted itineraries, offering unique opportunities to engage with local cultures and create lasting memories. Let us guide you to experiences that resonate with your aspirations.</h6>
         </div>
     </div>
     <!-- Itinerary section -->
-    <div class="section-dark">
-        <div class="container">
+    <div style="border-style:ridge; border-color:rgba(255, 255, 255, 0.162);" class="section-dark">
+        <div  class="container">
+            <h2 style="padding-bottom: 20px;">Itineraries</h2>
             <div class="itinerary-wrapper">
                 <div class="row flex-row flex-nowrap overflow-auto" id="itinerary-container">
                     <!-- Itinerary Cards will be dynamically added here -->
@@ -79,25 +96,26 @@
             </div>
         </div>
     </div>
-
+    
     <!--Misc--->
     <div class="miscellanous">
-        <div class="misc-container">
-        
-            <div class="misc-text-wrapper">
-                <h5>Join us on a visual journey through the incredible moments captured during our past tours. Each image reflects the beauty, adventure, and unforgettable experiences our travelers have embraced around the globe. From breathtaking landscapes and vibrant cultures to the joy of connection and discovery, these snapshots showcase the magic that unfolds on every journey. Let these memories inspire your next adventure with us!</h5>
+        <div style="padding-left: 1rem; padding-right: 1rem;" class="misc-container">
+            <div style="border-radius: 10px;" class="section-dark">
+                <div class="misc-text-wrapper">
+                    <h6>Join us on a visual journey through the incredible moments captured during our past tours. Each image reflects the beauty, adventure, and unforgettable experiences our travelers have embraced around the globe. From breathtaking landscapes and vibrant cultures to the joy of connection and discovery, these snapshots showcase the magic that unfolds on every journey. Let these memories inspire your next adventure with us!</h6>
+                </div>
             </div>
         </div>
     
-        <div class="misc-imgcontainer">
-            <div class="misc-image-wrapper">
-                <img src="assets/dummypics/merlin_148552275_74c0d250-949c-46e0-b8a1-e6d499e992cf-superJumbo.jpg">
+        <div style="padding-right: 1rem;" class="misc-imgcontainer">
+            <div  class="misc-image-wrapper">
+                <img style="border-radius: 10px;" src="assets/dummypics/merlin_148552275_74c0d250-949c-46e0-b8a1-e6d499e992cf-superJumbo.jpg">
             </div>  
             <div class="misc-image-wrapper">
-                <img src="assets/dummypics/Nuwara-Eliya.jpg">
+                <img style="border-radius: 10px;" src="assets/dummypics/Nuwara-Eliya.jpg">
             </div>
             <div class="misc-image-wrapper">
-                <img src="assets/dummypics/Nuwara-Eliya.jpg">
+                <img style="border-radius: 10px;" src="assets/dummypics/Nuwara-Eliya.jpg">
             </div>
         </div>
     
