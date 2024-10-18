@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Add Locations - Monsoon Tours</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Navbar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 18px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: url('assets/pics/hero.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-section .content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        /* Form and Map Container */
+        .contact-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        .map-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .map {
+            flex-grow: 1;
+            min-width: 400px;
+        }
+
+        /* Buttons and Form Elements */
+        .btn-custom {
+            background-color: #f58220;
+            color: white;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #e67300;
+        }
+
+        .form-control {
+            border-radius: 0;
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        input[type="date"], input[type="text"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: none;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #000000c5;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-section {
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h4 {
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .footer-section a:hover {
+            text-decoration: none;
+            color: #444;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .form-container, .map {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body style="background: url('assets/pics/Home.jpg') no-repeat center fixed;background-color: #333;color: white;">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Monsoon Tours</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-3">
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Taxi.html">Taxi</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
+                </ul>
+                
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="transparent-button">
+                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="container contact-container">
+        <div class="map-container">
+            <div class="form-container">
+                <form id="add-location-form">
+                    <div class="form-group">
+                        <label for="location-name">Location Name</label>
+                        <input type="text" class="form-control" id="location-name" placeholder="Enter location name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="visit-date">Visit Date</label>
+                        <input type="date" class="form-control" id="visit-date">
+                    </div>
+                    <button type="submit" class="btn btn-custom">Add Location</button>
+                </form>
+
+                <div id="location-list">
+                    <h3>Your Selected Locations</h3>
+                    <ul id="locations"></ul>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map">
+                <h3>Select a location on the map or start typing a location name</h3>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">Contact</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monsoon Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <script>
+        // JavaScript for location search, map display, and form handling
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+            });
+
+            const input = document.getElementById("location-name");
+            const autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo("bounds", map);
+
+            const infowindow = new google.maps.InfoWindow();
+            const marker = new google.maps.Marker({
+                map: map,
+            });
+
+            autocomplete.addListener("place_changed", function () {
+                infowindow.close();
+                marker.setVisible(false);
+                const place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    return;
+                }
+
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
+
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+            });
+        }
+
+        document.getElementById("add-location-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const locationName = document.getElementById("location-name").value;
+            const visitDate = document.getElementById("visit-date").value;
+
+            const locationList = document.getElementById("locations");
+            const listItem = document.createElement("li");
+            listItem.textContent = `${locationName} - ${visitDate}`;
+            locationList.appendChild(listItem);
+        });
+
+        window.onload = initMap;
+    </script>
+
+</body>
+</html>
