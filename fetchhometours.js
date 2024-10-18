@@ -28,9 +28,10 @@
          packageCard.innerHTML = `
              <div class="itinerary-card">
                  <h5>${pkg.packageName}</h5>
-                 <p>Duration: ${pkg.duration}</p>
+                 <p>Duration: ${pkg.duration} days</p>
                  <p>Description: ${pkg.description}</p>
                  <p>No. of Locations: ${pkg.locations || 'N/A'}</p>
+                 <button class="bookBtn" type="submit">Book</button>
              </div>
          `;
          itineraryContainer.appendChild(packageCard);
