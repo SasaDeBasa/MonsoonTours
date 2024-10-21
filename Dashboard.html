@@ -19,7 +19,7 @@
 
         /* Expanded Sidebar */
         .sidebar {
-            width: 250px; /* Width when expanded */
+            width: 180px; /* Width when expanded */
             background-color: #000;
             color: white;
             position: fixed;
@@ -240,7 +240,7 @@
     
     
     <div class="sidebar">
-        <button id="toggleSidebar" class="toggle-btn">&gt;</button>
+        <!-- <button id="toggleSidebar" class="toggle-btn">&gt;</button> -->
         <div class="sidebar-content">
             <button onclick="showSection('content1')"><img src="/assets/icons/Packages.svg" alt="Tours">Tours</button>
             <button onclick="showSection('content2')"><img src="/assets/icons/Bookings.svg" alt="Bookings">Bookings</button>
@@ -302,6 +302,7 @@
                             <th>Package Name</th>
                             <th>Booking Date</th>
                             <th>Status</th>
+                            <th>Assign Vehicle</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -329,6 +330,8 @@
                             <th>Model</th>
                             <th>Year</th>
                             <th>No. of Passengers</th>
+                            <th>Image</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

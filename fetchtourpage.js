@@ -77,11 +77,41 @@ async function bookTour(packageId) {
         return;
     }
 
+    // Check for existing bookings for the same package
+    const bookingsRef = collection(db, 'bookings');
+    const existingBookingsQuery = await getDocs(bookingsRef);
+    let hasOngoingOrBookedTour = false;
+    let hasBookedPackage = false;
+
+    existingBookingsQuery.forEach((doc) => {
+        const bookingData = doc.data();
+        if (bookingData.userId === currentUser.uid) {
+            // Check if there is any ongoing or booked tour
+            if (bookingData.status === "Ongoing" || bookingData.status === "Pending") {
+                hasOngoingOrBookedTour = true;
+            }
+            // Check if the user has booked the same package
+            if (bookingData.packageId === packageId) {
+                hasBookedPackage = true;
+            }
+        }
+    });
+
+    if (hasOngoingOrBookedTour) {
+        alert("You cannot book a new tour while you have an ongoing or booked tour.");
+        return;
+    }
+
+    if (hasBookedPackage) {
+        alert("You have already booked this tour.");
+        return;
+    }
+
     const bookingData = {
         userId: currentUser.uid,
         packageId: packageId,
         bookedAt: new Date().toISOString(),
-        status: "Booked" // You can modify this as needed
+        status: "Pending" // You can modify this as needed
     };
 
     try {
@@ -92,6 +122,7 @@ async function bookTour(packageId) {
         alert("Failed to book the tour. Please try again.");
     }
 }
+
 
 // Fetch and display packages when the page loads
 fetchAndDisplayPackages();
