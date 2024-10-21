@@ -7,9 +7,40 @@
     <title>Tour - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    
+    <style>
+        body {
+            background: url('assets/pics/Home.jpg') no-repeat center fixed;
+            background-color: #333;
+            color: white;
+        }
+        .section-dark {
+            margin-top: 100px;
+            padding: 50px 0; /* Reduced bottom padding for better mobile view */
+        }
+        .package-container {
+            display: flex;          /* Enables flexbox layout */
+            overflow-x: auto;      /* Enables horizontal scrolling */
+            padding: 20px;         /* Optional padding around the scroll area */
+            scroll-snap-type: x mandatory; /* Snap scrolling */
+        }
+        .package-card {
+            flex: 0 0 auto;        /* Prevents flex items from shrinking */
+            margin-right: 20px;    /* Spacing between cards */
+            scroll-snap-align: start; /* Snap alignment */
+        }
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .package-card {
+                padding: 15px; /* Padding for mobile view */
+                min-width: 200px; /* Minimum width for cards */
+            }
+            h2 {
+                font-size: 1.5rem; /* Smaller heading on mobile */
+            }
+        }
+    </style>
 </head>
-<body style="background: url('assets/pics/Home.jpg') no-repeat center fixed;background-color: #333;color: white;">
+<body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -18,7 +49,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
                     </li>
@@ -38,14 +69,12 @@
         </div>
     </nav>
 
-    <!-- Taxi section -->
-    <div class="section-dark" style="margin-top: 100px; padding-bottom: 100px;">
-        <div class="container-tour">
-            <div class="container mt-5">
-                <h2 class="mb-4">Tour Packages</h2>
-                <div class="row" id="packageContainer">
-                    <!-- Cards will be inserted here dynamically -->
-                </div>
+    <!-- Tour section -->
+    <div class="section-dark">
+        <div class="container">
+            <h2 class="mb-4 text-center">Tour Packages</h2>
+            <div class="package-container" id="packageContainer">
+                <!-- Cards will be inserted here dynamically -->
             </div>
         </div>
     </div>
@@ -81,6 +110,7 @@
             <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
         </div>
     </footer>
+    
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script src="app.js" type="module"></script>
