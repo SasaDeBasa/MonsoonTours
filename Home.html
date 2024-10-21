@@ -21,7 +21,35 @@
             background-color: rgb(255, 98, 0);
             color: black;
         }
-
+        /* Responsive Styles */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 2rem 1rem; /* Reduce padding for mobile */
+            margin-top: 56px; /* Maintain space from navbar */
+        }
+        .hero-title {
+            font-size: 1.8rem; /* Reduce font size for mobile */
+        }
+        .hero-subtitle {
+            font-size: 1rem; /* Reduce font size for mobile */
+            width: 90%; /* Adjust width for mobile */
+        }
+        .misc-image {
+            width: 100%; /* Make images responsive */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 250px; /* Limit maximum width */
+            border-radius: 10px; /* Maintain border radius */
+        }
+        .misc-imgcontainer {
+            display: flex;
+            flex-direction: column; /* Stack images on smaller screens */
+            align-items: center; /* Center images */
+            gap: 1rem; /* Add space between images */
+        }
+        .misc-description {
+            font-size: 0.9rem; /* Reduce font size for mobile */
+        }
+    }
     </style>
 
 </head>
@@ -29,8 +57,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" id="MTICON" href="Home.html">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-3">
+                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
                     </li>
@@ -40,23 +71,25 @@
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
                     </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
                 </ul>
-                
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <button class="transparent-button">
-                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div style="padding-left: 2rem; padding-right: 2rem;" class="hero-section">
+    <div class="hero-section" style="padding: 3rem 2rem; margin-top: 56px;"> <!-- Keep margin-top to separate from navbar -->
         <div class="content">
-            <h1>Elevate Your Travel Experience</h1>
-            <h6 style="margin-left: 200px; margin-right: 200px; padding-top: 30px;">Savor the extraordinary with our carefully crafted itineraries, offering unique opportunities to engage with local cultures and create lasting memories. Let us guide you to experiences that resonate with your aspirations.</h6>
+            <h1 class="hero-title">Discover Your Next Adventure</h1>
+            <h7 class="hero-subtitle">
+                Join Monsoon Tours to explore stunning global destinations with itineraries that blend adventure, culture, and relaxation tailored for you.</h7>
+            <div class="text-center" style="padding-top: 20px;">
+                <a href="Tour.html" class="bookBtn">Explore Tours</a>
+            </div>
         </div>
     </div>
     <!-- Itinerary section -->
@@ -94,29 +127,29 @@
         </div>
     </div>
     
-    <!--Misc--->
+    <!-- Miscellaneous Section -->
     <div class="miscellanous">
-        <div style="padding-left: 1rem; padding-right: 1rem;" class="misc-container">
-            <div style="border-radius: 10px;" class="section-dark">
+        <div class="misc-container">
+            <div class="section-dark" style="border-radius: 10px;">
                 <div class="misc-text-wrapper">
-                    <h6>Join us on a visual journey through the incredible moments captured during our past tours. Each image reflects the beauty, adventure, and unforgettable experiences our travelers have embraced around the globe. From breathtaking landscapes and vibrant cultures to the joy of connection and discovery, these snapshots showcase the magic that unfolds on every journey. Let these memories inspire your next adventure with us!</h6>
+                    <h6 class="misc-description">Discover the magic of travel with our past tour stories and photos, showcasing vibrant cultures and breathtaking landscapes to inspire your next adventure with Monsoon Tours!</h6>
                 </div>
             </div>
         </div>
-    
-        <div style="padding-right: 1rem;" class="misc-imgcontainer">
-            <div  class="misc-image-wrapper">
-                <img style="border-radius: 10px;" src="assets/dummypics/merlin_148552275_74c0d250-949c-46e0-b8a1-e6d499e992cf-superJumbo.jpg">
+
+        <div class="misc-imgcontainer">
+            <div class="misc-image-wrapper">
+                <img class="misc-image" src="assets/dummypics/merlin_148552275_74c0d250-949c-46e0-b8a1-e6d499e992cf-superJumbo.jpg" alt="Travel Image 1">
             </div>  
             <div class="misc-image-wrapper">
-                <img style="border-radius: 10px;" src="assets/dummypics/Nuwara-Eliya.jpg">
+                <img class="misc-image" src="assets/dummypics/Nuwara-Eliya.jpg" alt="Travel Image 2">
             </div>
             <div class="misc-image-wrapper">
-                <img style="border-radius: 10px;" src="assets/dummypics/Nuwara-Eliya.jpg">
+                <img class="misc-image" src="assets/dummypics/Nuwara-Eliya.jpg" alt="Travel Image 3">
             </div>
         </div>
-    
     </div>
+
     <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>

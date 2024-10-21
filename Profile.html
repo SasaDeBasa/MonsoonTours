@@ -55,36 +55,34 @@
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    overflow-x: auto; /* Allow horizontal scrolling */
 }
 
 .table {
-    width: 100%; /* Ensure the table takes the full width */
-    color: white; /* Set text color to white */
+    width: 100%; /* Ensure table uses full width */
 }
 
-.table th,
-.table td {
-    vertical-align: middle;
-    padding: 10px; /* Add some padding for better spacing */
-    text-align: left; /* Align text to the left */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add bottom border for separation */
+.table th, .table td {
+    color: white; /* Text color */
+    vertical-align: middle; /* Center content vertically */
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .table th {
-    background-color: rgba(0, 0, 0, 0.8); /* Dark background for header */
-    font-weight: bold; /* Bold text for headers */
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background for header */
 }
 
-.table tr:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Highlight row on hover */
+.table td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Light border between rows */
 }
 
+/* Responsive adjustments */
 @media (max-width: 576px) {
     .table th, .table td {
-        font-size: 14px; /* Reduce font size on small screens */
+        font-size: 14px; /* Smaller font on mobile */
     }
 }
+
 
         .btn-book-tour {
             position: absolute;
@@ -158,7 +156,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-3">
+                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
                     </li>
@@ -168,10 +166,12 @@
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
                     </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
                 </ul>
-                <button class="transparent-button">
-                    <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
-                </button>
             </div>
         </div>
     </nav>

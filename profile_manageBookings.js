@@ -70,7 +70,7 @@ async function fetchAndDisplayBookings() {
                         </p>
                     </td>
                     <td>
-                        <button class="btn-delete" data-id="${bookingId}" ${bookingData.status === 'Ongoing' ? 'disabled' : ''}>
+                        <button style="border-radius:10px ;" class="btn-delete" data-id="${bookingId}" ${bookingData.status === 'Ongoing' ? 'disabled' : ''}>
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>

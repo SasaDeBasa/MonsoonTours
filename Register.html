@@ -16,6 +16,12 @@
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 0; /* Keep it behind other elements */
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .login-container {
@@ -25,9 +31,8 @@
             border-radius: 10px;
             width: 350px;
             margin: auto;
-            margin-top: 100px;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Bring it above the blur */
         }
 
         .form-control {
@@ -91,9 +96,29 @@
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
         }
+
+        body {
+            background: url('assets/pics/pic4.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            overflow-y: auto; /* Allow vertical scrolling */
+            height: 100vh; /* Full height to enable scrollbar */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+        }
+
+        /* Adjustments to prevent bottom part from being cut off */
+        .d-flex {
+            flex: 1; /* Allow flex to fill available space */
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* Add some margin */
+            margin-bottom: 20px; /* Add some margin */
+        }
     </style>
 </head>
-<body style="background: url('assets/pics/pic4.jpg') no-repeat center center fixed; background-size: cover; color: white; overflow: hidden;">
+<body>
     <!-- Blurred Background Overlay -->
     <div class="blur-overlay"></div>
 
@@ -101,30 +126,33 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" id="MTICON" href="Home.html">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-3">
+                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
                     </li>
                     <li class="nav-item">
-                        <button class="transparent-button"><a class="nav-link" href="#">Tour</a></button>
+                        <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
                     </li>
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
                     </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
                 </ul>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <button class="transparent-button">
-                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
-            </button>
         </div>
     </nav>
 
+
     <!-- Registration Form Container -->
-    <div class="d-flex justify-content-center align-items-center" style="margin-top: -70px;">
+    <div class="d-flex">
         <div class="login-container">
             <h3 class="text-center mb-4">Register</h3>
             <form id="registrationForm">

@@ -12,16 +12,20 @@
     <style>
         .sendMessageBtn {
             color: white;
-            border: 1px;
             background-color: rgba(255, 115, 0, 0.429);
             height: 40px;
             width: 120px;
             border-radius: 10px;
+            border: none;
         }
 
         .sendMessageBtn:hover {
             background-color: rgb(255, 98, 0);
             color: black;
+        }
+
+        .contact-container {
+            margin-top: 50px;
         }
 
         .faq-section {
@@ -53,23 +57,10 @@
         .footer-social-icons a {
             margin-right: 10px;
         }
-        .faq-section {
-            margin-top: 50px;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .faq-section h3 {
-            color: #ff7300;
-        }
 
         .faq-item {
-            margin-bottom: 15px;
-            background-color: black; /* Black background for FAQ items */
-            color: white; /* White text color */
-            border-radius: 5px; /* Rounded corners */
+            background-color: black;
+            border-radius: 5px;
         }
 
         .faq-item .card-header {
@@ -77,17 +68,32 @@
         }
 
         .faq-item .btn-link {
-            color: white; /* White text color */
-            font-weight: bold; /* Bold text */
-            text-decoration: none; /* Remove underline */
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
         }
 
         .faq-item .btn-link:hover {
-            color: #ff7300; /* Orange color on hover */
+            color: #ff7300;
         }
 
         .faq-item .card-body {
             padding: 15px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-info {
+                margin-top: 20px;
+            }
+
+            .contact-container .row {
+                flex-direction: column; /* Stack columns on mobile */
+            }
+
+            .sendMessageBtn {
+                width: 100%; /* Full width button on mobile */
+            }
         }
 
     </style>
@@ -97,8 +103,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" id="MTICON" href="Home.html">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-3">
+                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
                     </li>
@@ -108,19 +117,18 @@
                     <li class="nav-item">
                         <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
                     </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
                 </ul>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <button class="transparent-button">
-                <a href="Profile.html" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
-            </button>
         </div>
     </nav>
 
     <!-- Contact Form Section -->
-    <div class="container contact-container mt-5">
+    <div class="container contact-container">
         <div class="row">
             <div class="col-md-6">
                 <h3>We're ready, Let's Talk</h3>
@@ -152,13 +160,11 @@
         </div>
     </div>
 
-
     <!-- FAQ Section -->
     <div class="container faq-section mt-5">
         <h3 style="color: white;">Frequently Asked Questions (FAQ)</h3>
         <div class="accordion" id="faqAccordion">
-
-                
+            <!-- FAQ items will be dynamically inserted here -->
         </div>
     </div>
 
