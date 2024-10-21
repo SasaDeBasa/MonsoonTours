@@ -33,11 +33,11 @@ async function fetchAvailableVehicles() {
         if (vehicleData.availability === true) {
             availableVehicles.push({
                 id: docSnapshot.id,
-                name: vehicleData.vehicleName || 'Unnamed Vehicle'
+                name: vehicleData.model || 'Unnamed Vehicle'
             });
         }
     });
-
+    console.log('Available vehicles:', availableVehicles); 
     return availableVehicles;
 }
 
@@ -96,11 +96,8 @@ async function fetchAndDisplayBookings(page = 1) {
                             <option value="Cancelled" ${bookingData.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                         </select>
                     </td>
-                    <td>
-                        <select class="vehicle-dropdown" data-id="${bookingId}">
-                            <option value="">Select Vehicle</option>
-                            ${availableVehicles.map(vehicle => `<option value="${vehicle.id}" ${bookingData.vehicleId === vehicle.id ? 'selected' : ''}>${vehicle.name}</option>`).join('')}
-                        </select>
+                    <td class="vehicle-cell">
+                        ${renderVehicleDropdownOrText(bookingData.status, bookingData.vehicleId, availableVehicles)}
                     </td>
                     <td>
                         <button class="btn-update-status" data-id="${bookingId}">Update Status</button>
@@ -113,7 +110,7 @@ async function fetchAndDisplayBookings(page = 1) {
                 const updateButton = bookingRow.querySelector('.btn-update-status');
                 updateButton.addEventListener('click', async () => {
                     const selectedStatus = bookingRow.querySelector('.status-dropdown').value;
-                    const selectedVehicle = bookingRow.querySelector('.vehicle-dropdown').value;
+                    const selectedVehicle = bookingRow.querySelector('.vehicle-dropdown')?.value || null;
 
                     await updateBookingStatus(bookingId, selectedStatus, selectedVehicle);
                 });
@@ -135,11 +132,41 @@ async function fetchAndDisplayBookings(page = 1) {
     }
 }
 
+// Function to render either a vehicle dropdown or the vehicle name, based on the booking status
+function renderVehicleDropdownOrText(status, assignedVehicleId, availableVehicles) {
+    if (status === 'Pending') {
+        // Allow assigning a vehicle only when the status is Pending
+        return `
+            <select class="vehicle-dropdown">
+                <option value="">Select Vehicle</option>
+                ${availableVehicles.map(vehicle => `<option value="${vehicle.id}" ${assignedVehicleId === vehicle.id ? 'selected' : ''}>${vehicle.name}</option>`).join('')}
+            </select>
+        `;
+    } else if (status === 'Ongoing' && assignedVehicleId) {
+        // Display the assigned vehicle name for Ongoing bookings
+        const assignedVehicle = availableVehicles.find(vehicle => vehicle.id === assignedVehicleId);
+        return assignedVehicle ? assignedVehicle.name : 'Unknown Vehicle';
+    } else {
+        // No dropdown for Completed or Cancelled bookings
+        return assignedVehicleId ? 'Vehicle Assigned' : 'No Vehicle';
+    }
+}
+
 // Function to update booking status and vehicle assignment
 async function updateBookingStatus(bookingId, newStatus, vehicleId) {
     const bookingRef = doc(db, 'bookings', bookingId);
     const bookingSnapshot = await getDoc(bookingRef);
     const bookingData = bookingSnapshot.data();
+
+    // If the new status is Completed or Cancelled, and a vehicle was assigned, make that vehicle available
+    if ((newStatus === 'Completed' || newStatus === 'Cancelled') && bookingData.vehicleId) {
+        await updateVehicleAvailability(bookingData.vehicleId, true); // Mark the old vehicle as available
+    }
+
+    // If a new vehicle is assigned in Pending status, mark it as unavailable
+    if (newStatus === 'Pending' && vehicleId) {
+        await updateVehicleAvailability(vehicleId, false); // Mark the new vehicle as unavailable
+    }
 
     // Update the booking document with the new status and vehicleId
     await updateDoc(bookingRef, {
@@ -147,20 +174,12 @@ async function updateBookingStatus(bookingId, newStatus, vehicleId) {
         vehicleId: vehicleId || null // Save vehicleId or null if none selected
     });
 
-    // If booking is completed or cancelled, set the vehicle's availability back to true
-    if (newStatus === 'Completed' || newStatus === 'Cancelled') {
-        if (bookingData.vehicleId) {
-            await updateVehicleAvailability(bookingData.vehicleId, true); // Mark the old vehicle as available
-        }
-    }
-
-    // If a new vehicle is assigned, mark it as unavailable
-    if (vehicleId) {
-        await updateVehicleAvailability(vehicleId, false); // Mark the new vehicle as unavailable
-    }
-
     alert('Booking and vehicle status updated!');
+
+    // Refresh the bookings display to show updated information
+    fetchAndDisplayBookings(currentPage);
 }
+
 
 // Function to update pagination controls
 function updatePaginationControls() {

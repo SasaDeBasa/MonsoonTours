@@ -26,6 +26,7 @@ const firebaseConfig = {
   //Reference to the tour collection
   const tourRef = db.collection("tour").doc("tourId");
 
+
 // Add Vehicle Function
 document.getElementById("addVehicleForm").addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -38,20 +39,23 @@ document.getElementById("addVehicleForm").addEventListener("submit", async (even
     const imageUrl = document.getElementById("imageUrl").value; // Get the image URL from the form
 
     try {
-        // Add the vehicle document to Firestore
+        // Add the vehicle document to Firestore with initial availability set to true
         await vehicleRef.doc(vehicleId).set({
             make: make,
             model: model,
             year: year,
             passengers: passengers,
-            imageUrl: imageUrl // Store the image URL in Firestore
+            imageUrl: imageUrl, // Store the image URL in Firestore
+            availability: true // Set availability to true initially
         });
-        alert("Vehicle added successfully!");
+        
+        alert("Vehicle added successfully with availability set to true!");
         document.getElementById("addVehicleForm").reset(); // Clear form fields
     } catch (error) {
         console.error("Error adding vehicle: ", error);
     }
 });
+
 
 // Function to Render Vehicles in the HTML Table
 function renderVehicleTable(doc) {
