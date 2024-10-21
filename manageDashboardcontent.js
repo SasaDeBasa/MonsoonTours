@@ -9,27 +9,25 @@ function showSection(sectionId) {
     document.getElementById(sectionId).style.display = 'block';
 }
 
-const toggleSidebar = document.getElementById("toggleSidebar");
-const sidebar = document.getElementById("sidebar");
-const mainContent = document.getElementById("mainContent");
-
-toggleSidebar.addEventListener("click", () => {
-    if (sidebar.style.width === "250px" || sidebar.style.width === "") {
-        sidebar.style.width = "0";
-        mainContent.style.marginLeft = "0";
-    } else {
-        sidebar.style.width = "250px";
-        mainContent.style.marginLeft = "250px";
-    }
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('.sidebar');
     const toggleButton = document.querySelector('#toggleSidebar');
+    const sidebarButtons = sidebar.querySelectorAll('button');
 
-    // Toggle sidebar visibility when the button is clicked
-    toggleButton.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
+    if (toggleButton) {  // Check if the toggle button exists
+        // Toggle sidebar visibility when the toggle button is clicked
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    } else {
+        console.error('Toggle button not found');
+    }
+
+    // Add event listeners to sidebar buttons to collapse sidebar when any of them is clicked
+    sidebarButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            sidebar.classList.remove('active'); // Collapse the sidebar
+        });
     });
 
     // Make the toggle button draggable
@@ -60,3 +58,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
