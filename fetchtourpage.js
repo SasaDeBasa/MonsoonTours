@@ -7,7 +7,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
     authDomain: "monsoontours-65f1e.firebaseapp.com",
     projectId: "monsoontours-65f1e",
-    storageBucket: "monsoontours-65f1e",
+    storageBucket: "monsoontours-65f1e.appspot.com",
     messagingSenderId: "378330088807",
     appId: "1:378330088807:web:217c00702fc17fea671bc2",
     measurementId: "G-L4V5MLH9KD"
@@ -16,18 +16,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-
-// Fetch the logged-in user's ID
-let currentUser = null;
-
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        currentUser = user;
-    } else {
-        // Redirect to login if not logged in
-        window.location.href = "login.html";
-    }
-});
 
 // Function to fetch tour packages and display them as Bootstrap cards
 async function fetchAndDisplayPackages() {
@@ -62,7 +50,7 @@ async function fetchAndDisplayPackages() {
         bookButtons.forEach(button => {
             button.addEventListener('click', async (event) => {
                 const packageId = event.target.getAttribute('data-id');
-                await bookTour(packageId);
+                await handleTourBooking(packageId);
             });
         });
     } catch (error) {
@@ -70,13 +58,23 @@ async function fetchAndDisplayPackages() {
     }
 }
 
-// Function to book a tour
-async function bookTour(packageId) {
-    if (!currentUser) {
-        alert("Please log in to book a tour.");
-        return;
-    }
+// Function to handle tour booking (with login check)
+async function handleTourBooking(packageId) {
+    // Check if the user is logged in
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            // If user is not logged in, redirect them to the login page
+            alert("Please log in to book a tour.");
+            window.location.href = "login.html";
+        } else {
+            // If logged in, proceed with booking the tour
+            await bookTour(user, packageId);
+        }
+    });
+}
 
+// Function to book a tour
+async function bookTour(user, packageId) {
     // Check for existing bookings for the same package
     const bookingsRef = collection(db, 'bookings');
     const existingBookingsQuery = await getDocs(bookingsRef);
@@ -85,7 +83,7 @@ async function bookTour(packageId) {
 
     existingBookingsQuery.forEach((doc) => {
         const bookingData = doc.data();
-        if (bookingData.userId === currentUser.uid) {
+        if (bookingData.userId === user.uid) {
             // Check if there is any ongoing or booked tour
             if (bookingData.status === "Ongoing" || bookingData.status === "Pending") {
                 hasOngoingOrBookedTour = true;
@@ -108,7 +106,7 @@ async function bookTour(packageId) {
     }
 
     const bookingData = {
-        userId: currentUser.uid,
+        userId: user.uid,
         packageId: packageId,
         bookedAt: new Date().toISOString(),
         status: "Pending" // You can modify this as needed
@@ -122,7 +120,6 @@ async function bookTour(packageId) {
         alert("Failed to book the tour. Please try again.");
     }
 }
-
 
 // Fetch and display packages when the page loads
 fetchAndDisplayPackages();
