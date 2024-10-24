@@ -189,7 +189,86 @@ function updatePaginationControls() {
 
     document.getElementById('prevPage').disabled = currentPage === 1;
     document.getElementById('nextPage').disabled = currentPage === totalPages;
+
 }
+
+// Function to convert booking data to Excel file and download
+function downloadExcel(data, fileName) {
+    // Create a new workbook and a sheet with booking data
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Bookings');
+
+    // Create the Excel file and trigger a download
+    XLSX.writeFile(workbook, `${fileName}.xlsx`);
+}
+
+// Function to prepare and download displayed bookings
+function downloadDisplayedBookings() {
+    const bookingsTableBody = document.querySelector("#BookingsTable tbody");
+    const rows = bookingsTableBody.querySelectorAll("tr");
+    const displayedData = [];
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        displayedData.push({
+            Index: cells[0].textContent,
+            User: cells[1].textContent,
+            Package: cells[2].textContent,
+            Date: cells[3].textContent,
+            Status: cells[4].querySelector('select').value,
+            Vehicle: cells[5].textContent,
+        });
+    });
+
+    downloadExcel(displayedData, "Displayed_Bookings");
+}
+
+// Function to fetch and download all bookings
+async function downloadAllBookings() {
+    const bookingsRef = collection(db, 'bookings');
+    const querySnapshot = await getDocs(bookingsRef);
+    const allData = [];
+
+    // Fetch available vehicles for display in the Excel file
+    const availableVehicles = await fetchAvailableVehicles();
+
+    for (const docSnapshot of querySnapshot.docs) {
+        const bookingData = docSnapshot.data();
+        const bookingId = docSnapshot.id; // Document ID
+
+        // Fetch package details using the packageId
+        const packageRef = doc(db, 'packages', bookingData.packageId);
+        const packageSnapshot = await getDoc(packageRef);
+
+        // Fetch user details using the userId
+        const userRef = doc(db, 'user', bookingData.userId);
+        const userSnapshot = await getDoc(userRef);
+
+        if (packageSnapshot.exists() && userSnapshot.exists()) {
+            const packageData = packageSnapshot.data();
+            const userData = userSnapshot.data();
+
+            // Prepare row data
+            allData.push({
+                BookingID: bookingId,
+                User: userData.username || userData.displayName || 'Unknown',
+                Package: packageData.packageName,
+                Date: new Date(bookingData.bookedAt).toLocaleDateString(),
+                Status: bookingData.status,
+                Vehicle: renderVehicleDropdownOrText(bookingData.status, bookingData.vehicleId, availableVehicles)
+            });
+        }
+    }
+
+    // Download all bookings as Excel
+    downloadExcel(allData, "All_Bookings");
+}
+
+// Add event listeners for download buttons
+document.getElementById('downloadDisplayed').addEventListener('click', downloadDisplayedBookings);
+document.getElementById('downloadAll').addEventListener('click', downloadAllBookings);
+
 
 // Event listeners for pagination buttons
 document.getElementById('prevPage').addEventListener('click', () => {

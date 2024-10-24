@@ -1,6 +1,7 @@
 // Import Firebase functions from the newer Firebase v10.13.1
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, getDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
 
 // Function to render FAQs
 function renderFAQs(faqs) {
@@ -85,3 +87,37 @@ document.getElementById('addFaqForm').addEventListener('submit', function(event)
     document.getElementById('faqQuestion').value = '';
     document.getElementById('faqAnswer').value = '';
 });
+
+// Function to download FAQs as a PDF
+async function downloadFAQsAsPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Fetch FAQs from Firestore
+    const faqsSnapshot = await getDocs(faqCollection);
+    let yPosition = 10;
+
+    faqsSnapshot.forEach((faqDoc) => {
+        const faqData = faqDoc.data();
+
+        // Add question to the PDF
+        doc.text(`Q: ${faqData.question}`, 10, yPosition);
+        yPosition += 10;
+
+        // Add answer to the PDF
+        doc.text(`A: ${faqData.answer}`, 10, yPosition);
+        yPosition += 20;
+
+        // Add some space between FAQs
+        if (yPosition > 280) { // If page space is about to finish
+            doc.addPage();
+            yPosition = 10;
+        }
+    });
+
+    // Download the PDF
+    doc.save("FAQs.pdf");
+}
+
+// Add event listener to download button
+document.getElementById('downloadFAQBtn').addEventListener('click', downloadFAQsAsPDF);
