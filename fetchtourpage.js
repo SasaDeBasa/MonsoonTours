@@ -30,14 +30,14 @@ async function fetchAndDisplayPackages() {
             const packageId = doc.id; // Get the document ID
             const packageCard = `
                 <div class="col-md-4 package-card">
-                    <div class="card h-100 bg-dark">
+                    <div id="TourPageCard" class="card h-100">
                         <img src="${packageData.imageUrl}" class="card-img-top" alt="Package Image">
                         <div class="card-body">
                             <h5 class="card-title">${packageData.packageName}</h5>
                             <p class="card-text"><strong>Duration:</strong> ${packageData.duration} days</p>
                             <p class="card-text"><strong>No. of Locations:</strong> ${packageData.locations}</p>
                             <p class="card-text card-description">${packageData.description}</p>
-                            <button class="btn btn-primary book-btn" data-id="${packageId}">Book Now</button>
+                            <button id="bookTourbtn" class="btn btn-primary book-btn" data-id="${packageId}">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ async function handleTourBooking(packageId) {
     });
 }
 
-// Function to book a tour
+// Function to book a tour -------------------------------------matt
 async function bookTour(user, packageId) {
     // Check for existing bookings for the same package
     const bookingsRef = collection(db, 'bookings');

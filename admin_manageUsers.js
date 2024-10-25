@@ -76,19 +76,72 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/fireba
         }
     });
 
-    // Function to export the table to an Excel file
-    function exportTableToExcel() {
-        const table = document.querySelector("#UserTable");
-        const worksheet = XLSX.utils.table_to_sheet(table);//Converts the table into an Excel sheet.
-        const workbook = XLSX.utils.book_new();//Creates a new Excel workbook.
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Users");
 
-        // Generate and download the Excel file
-        XLSX.writeFile(workbook, "UsersData.xlsx");
+////----------------------------------------------------------Report Generation---------------------------------------------
+
+
+// Function to download the user table as an Excel file
+async function downloadUsersAsExcel() {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Users');
+
+    // Add title
+    worksheet.addRow(['User Information']);
+    worksheet.mergeCells('A1:C1'); // Merge cells for the title
+    worksheet.getCell('A1').font = { size: 16, bold: true }; // Style the title
+
+    // Create table header
+    const headerRow = ['Username', 'Email', 'Contact'];
+    worksheet.addRow(headerRow);
+
+    // Set header styles
+    headerRow.forEach((_, index) => {
+        worksheet.getCell(2, index + 1).font = { bold: true };
+        worksheet.getCell(2, index + 1).border = {
+            top: { style: 'thin' },
+            bottom: { style: 'thin' },
+            left: { style: 'thin' },
+            right: { style: 'thin' }
+        };
+    });
+
+    // Loop through each row in the displayed table and extract values
+    document.querySelectorAll('#UserTable tbody tr').forEach(row => {
+        const username = row.querySelector('td:nth-child(1)') ? row.querySelector('td:nth-child(1)').innerText : '';
+        const email = row.querySelector('td:nth-child(2)') ? row.querySelector('td:nth-child(2)').innerText : '';
+        const contact = row.querySelector('td:nth-child(3)') ? row.querySelector('td:nth-child(3)').innerText : '';
+
+        // Create a new row in the download table with the extracted values
+        worksheet.addRow([username, email, contact]);
+    });
+
+    // Set the styles for each cell in the body
+    const rowCount = worksheet.rowCount;
+    for (let i = 3; i <= rowCount; i++) { // Start from the 3rd row (after title and header)
+        for (let j = 1; j <= 3; j++) {
+            worksheet.getCell(i, j).border = {
+                top: { style: 'thin' },
+                bottom: { style: 'thin' },
+                left: { style: 'thin' },
+                right: { style: 'thin' }
+            };
+        }
     }
 
-    // Add event listener to the export button
-    document.getElementById('exportButton').addEventListener('click', exportTableToExcel);
+    // Download the workbook
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: "application/octet-stream" });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'UsersData.xlsx';
+    link.click();
+}
 
-    // Fetch and display users when the page loads
-    fetchAndDisplayUsers();
+// Add event listener to the export button
+document.getElementById('exportButton').addEventListener('click', downloadUsersAsExcel);
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+// Fetch and display users when the page loads
+fetchAndDisplayUsers();

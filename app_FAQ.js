@@ -88,30 +88,43 @@ document.getElementById('addFaqForm').addEventListener('submit', function(event)
     document.getElementById('faqAnswer').value = '';
 });
 
+//---------------------------------------------------------Report Generation----------------------
+
 // Function to download FAQs as a PDF
 async function downloadFAQsAsPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
+    // Add title "FAQ Report"
+    doc.setFontSize(18); // Set font size for title
+    doc.text("FAQ Report", 105, 10, { align: 'center' }); // Centered title
+    doc.setFontSize(12); // Reset font size for regular content
+
+    let yPosition = 20; // Start below the title
+    const pageWidth = 180; // Set page width for text wrapping
+
     // Fetch FAQs from Firestore
     const faqsSnapshot = await getDocs(faqCollection);
-    let yPosition = 10;
 
     faqsSnapshot.forEach((faqDoc) => {
         const faqData = faqDoc.data();
 
         // Add question to the PDF
-        doc.text(`Q: ${faqData.question}`, 10, yPosition);
-        yPosition += 10;
+        const question = `Q: ${faqData.question}`;
+        const wrappedQuestion = doc.splitTextToSize(question, pageWidth);
+        doc.text(wrappedQuestion, 10, yPosition);
+        yPosition += wrappedQuestion.length * 10; // Adjust yPosition based on the number of lines
 
         // Add answer to the PDF
-        doc.text(`A: ${faqData.answer}`, 10, yPosition);
-        yPosition += 20;
+        const answer = `A: ${faqData.answer}`;
+        const wrappedAnswer = doc.splitTextToSize(answer, pageWidth);
+        doc.text(wrappedAnswer, 10, yPosition);
+        yPosition += wrappedAnswer.length * 10 + 10; // Adjust yPosition based on the number of lines and add extra space
 
         // Add some space between FAQs
         if (yPosition > 280) { // If page space is about to finish
             doc.addPage();
-            yPosition = 10;
+            yPosition = 20;
         }
     });
 
