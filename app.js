@@ -194,7 +194,7 @@ function loadVehicles() {
 
 loadVehicles();
 
-// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------Report Generation------------------------------------------------------------------
 
 // Function to fetch all vehicles from Firestore
 async function fetchAllVehicles() {

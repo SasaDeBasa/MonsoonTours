@@ -18,6 +18,7 @@
             padding: 0;
             background-color: #ffffff;
             color: #000;
+            overflow-x: hidden;
         }
 
         /* Expanded Sidebar */
@@ -235,6 +236,11 @@
         .content7{
             margin-bottom: 50px;
         }
+        .section {
+            width: 100vw; /* Ensure sections take full viewport width */
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
+
 
     </style>
 </head>
@@ -404,7 +410,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button id="downloadBtn">Download as Excel</button>
+            <button id="downloadBtn" style="margin-top: 5px;">Download as Excel</button>
         </div>
 
         <script src="driverManagement.js" type="module"></script>
@@ -465,7 +471,7 @@
                     <script src="admin_manageUsers.js" type="module"></script>
                 </tbody>
             </table>
-            <button id="exportButton">Export to Excel</button>
+            <button id="exportButton" style="margin-top: 5px;">Export to Excel</button>
         </div>
     </div>
 
