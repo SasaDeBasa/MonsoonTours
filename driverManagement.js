@@ -114,19 +114,32 @@ async function fetchAndDisplayDrivers() {
     }
 }
 
-// Function to download the table as an Excel file (updated)
-function downloadTableAsExcel() {
-    const table = document.createElement('table');
-    const tableBody = document.createElement('tbody');
-    
+//--------------------------------------------------------------Report Generation-------------------------------------------------
+ 
+// Function to download the table as an Excel file 
+async function downloadTableAsExcel() {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Drivers');
+
+    // Add title
+    worksheet.addRow(['Driver Information']);
+    worksheet.mergeCells('A1:C1'); // Merge cells for the title
+    worksheet.getCell('A1').font = { size: 16, bold: true }; // Style the title
+
     // Create table header
-    const headerRow = `
-        <tr>
-            <th>NIC</th>
-            <th>Name</th>
-            <th>Phone</th>
-        </tr>`;
-    tableBody.insertAdjacentHTML('beforeend', headerRow);
+    const headerRow = ['NIC', 'Name', 'Phone'];
+    worksheet.addRow(headerRow);
+
+    // Set header styles
+    headerRow.forEach((_, index) => {
+        worksheet.getCell(2, index + 1).font = { bold: true };
+        worksheet.getCell(2, index + 1).border = {
+            top: { style: 'thin' },
+            bottom: { style: 'thin' },
+            left: { style: 'thin' },
+            right: { style: 'thin' }
+        };
+    });
 
     // Loop through each row in the displayed table and extract input values
     document.querySelectorAll('#driverTable tbody tr').forEach(row => {
@@ -135,22 +148,29 @@ function downloadTableAsExcel() {
         const phone = row.querySelector('.phone-input') ? row.querySelector('.phone-input').value : '';
 
         // Create a new row in the download table with the extracted values
-        const newRow = `
-            <tr>
-                <td>${nic}</td>
-                <td>${name}</td>
-                <td>${phone}</td>
-            </tr>`;
-        tableBody.insertAdjacentHTML('beforeend', newRow);
+        worksheet.addRow([nic, name, phone]);
     });
 
-    table.appendChild(tableBody);
+    // Set the styles for each cell in the body
+    const rowCount = worksheet.rowCount;
+    for (let i = 3; i <= rowCount; i++) { // Start from the 3rd row (after title and header)
+        for (let j = 1; j <= 3; j++) {
+            worksheet.getCell(i, j).border = {
+                top: { style: 'thin' },
+                bottom: { style: 'thin' },
+                left: { style: 'thin' },
+                right: { style: 'thin' }
+            };
+        }
+    }
 
-    // Convert the clean table to a worksheet and download it as an Excel file
-    const worksheet = XLSX.utils.table_to_sheet(table);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Drivers");
-    XLSX.writeFile(workbook, "drivers.xlsx");
+    // Download the workbook
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: "application/octet-stream" });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'drivers.xlsx';
+    link.click();
 }
 
 // Fetch and display drivers when the page loads

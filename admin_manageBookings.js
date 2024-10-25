@@ -192,18 +192,75 @@ function updatePaginationControls() {
 
 }
 
-// Function to convert booking data to Excel file and download
-function downloadExcel(data, fileName) {
-    // Create a new workbook and a sheet with booking data
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.json_to_sheet(data);
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Bookings');
+// ------------------------------------------------Report Generation------------------------------------------------------------------
+
+// Function to convert booking data to Excel file and download using ExcelJS
+async function downloadExcel(data, fileName) {
+    // Create a new workbook
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Bookings');
+
+    // Add title
+    worksheet.addRow(['Booking Report']).font = { bold: true, size: 16 };
+    worksheet.getCell('A1').alignment = { horizontal: 'center' };
+    worksheet.mergeCells('A1:F1'); // Merge title across the columns
+
+    // Add headers
+    const headers = ['Booking ID', 'User', 'Package', 'Date', 'Status', 'Vehicle'];
+    worksheet.addRow(headers).font = { bold: true };
+    
+    // Set borders for headers
+    headers.forEach((header, index) => {
+        const cell = worksheet.getCell(2, index + 1); // Row 2 for headers
+        cell.border = {
+            top: { style: 'thin' },
+            left: { style: 'thin' },
+            bottom: { style: 'thin' },
+            right: { style: 'thin' }
+        };
+    });
+
+    // Add data rows
+    data.forEach(row => {
+        const newRow = worksheet.addRow([
+            row.BookingID,
+            row.User,
+            row.Package,
+            row.Date,
+            row.Status,
+            row.Vehicle
+        ]);
+
+        // Set borders for each cell in the row
+        newRow.eachCell((cell) => {
+            cell.border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+            };
+        });
+    });
+
+    // Auto-fit columns
+    worksheet.columns.forEach(column => {
+        const maxLength = column.values.reduce((max, value) => Math.max(max, String(value).length), 0);
+        column.width = maxLength + 2; // Add some padding
+    });
 
     // Create the Excel file and trigger a download
-    XLSX.writeFile(workbook, `${fileName}.xlsx`);
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileName}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
 
-// Function to prepare and download displayed bookings
+// Update the downloadDisplayedBookings function to use the new downloadExcel method
 function downloadDisplayedBookings() {
     const bookingsTableBody = document.querySelector("#BookingsTable tbody");
     const rows = bookingsTableBody.querySelectorAll("tr");
@@ -212,7 +269,7 @@ function downloadDisplayedBookings() {
     rows.forEach(row => {
         const cells = row.querySelectorAll("td");
         displayedData.push({
-            Index: cells[0].textContent,
+            BookingID: cells[0].textContent,
             User: cells[1].textContent,
             Package: cells[2].textContent,
             Date: cells[3].textContent,
@@ -224,7 +281,7 @@ function downloadDisplayedBookings() {
     downloadExcel(displayedData, "Displayed_Bookings");
 }
 
-// Function to fetch and download all bookings
+// Update the downloadAllBookings function to use the new downloadExcel method
 async function downloadAllBookings() {
     const bookingsRef = collection(db, 'bookings');
     const querySnapshot = await getDocs(bookingsRef);
@@ -249,7 +306,7 @@ async function downloadAllBookings() {
             const packageData = packageSnapshot.data();
             const userData = userSnapshot.data();
 
-            // Prepare row data
+            // Prepare row data with current status and vehicle assigned
             allData.push({
                 BookingID: bookingId,
                 User: userData.username || userData.displayName || 'Unknown',
@@ -265,11 +322,12 @@ async function downloadAllBookings() {
     downloadExcel(allData, "All_Bookings");
 }
 
+
 // Add event listeners for download buttons
 document.getElementById('downloadDisplayed').addEventListener('click', downloadDisplayedBookings);
 document.getElementById('downloadAll').addEventListener('click', downloadAllBookings);
 
-
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
 // Event listeners for pagination buttons
 document.getElementById('prevPage').addEventListener('click', () => {
     if (currentPage > 1) {

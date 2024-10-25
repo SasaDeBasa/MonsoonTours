@@ -28,6 +28,28 @@
             margin-right: 20px;    /* Spacing between cards */
             scroll-snap-align: start; /* Snap alignment */
         }
+        .package-card img {
+        width: 100%; /* Ensures the image takes up the full width of the card */
+        height: 200px; /* Set a fixed height for all images */
+        object-fit: cover; /* Ensures the image covers the space without distortion, cropping if necessary */
+        }
+        .package-card .card {
+        display: flex;
+        flex-direction: column;
+        }
+
+        .package-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .package-card .book-btn {
+            margin-top: auto; /* This pushes the button to the bottom of the card body */
+        }
+
+
         /* Responsive adjustments */
         @media (max-width: 576px) {
             .package-card {
