@@ -10,7 +10,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/fireba
         messagingSenderId: "378330088807",
         appId: "1:378330088807:web:217c00702fc17fea671bc2",
         measurementId: "G-L4V5MLH9KD"
-    };
+    };// information is required to connect your code to your Firebase project.
 
     // Initialize Firebase App and Firestore
     const app = initializeApp(firebaseConfig);
@@ -23,10 +23,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/fireba
         usersTableBody.innerHTML = ''; // Clear existing rows
 
         try {
-            const querySnapshot = await getDocs(usersRef);
+            const querySnapshot = await getDocs(usersRef);//taking the users from the database
             console.log('Fetched users:', querySnapshot.docs.length); // Log number of users fetched
             querySnapshot.forEach((doc) => {
-                const userData = doc.data();
+                const userData = doc.data(); //get the data from each user
                 console.log('User data:', userData); // Log each user's data
                 const userRow = document.createElement('tr');
                 userRow.innerHTML = `
@@ -79,8 +79,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/fireba
     // Function to export the table to an Excel file
     function exportTableToExcel() {
         const table = document.querySelector("#UserTable");
-        const worksheet = XLSX.utils.table_to_sheet(table);
-        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.table_to_sheet(table);//Converts the table into an Excel sheet.
+        const workbook = XLSX.utils.book_new();//Creates a new Excel workbook.
         XLSX.utils.book_append_sheet(workbook, worksheet, "Users");
 
         // Generate and download the Excel file

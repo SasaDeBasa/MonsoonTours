@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// DOM Elements
+// DOM Elements //connects the HTML elements to the code
 const profileName = document.getElementById("ProfileName");
 const profileEmail = document.getElementById("ProfileEmail");
 const profileContact = document.getElementById("ProfileContact");
@@ -31,7 +31,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const userRef = doc(db, "user", user.uid);
-        const docSnap = await getDoc(userRef);
+        const docSnap = await getDoc(userRef); 
 
         if (docSnap.exists()) {
             // If the user signed up with Google
@@ -60,18 +60,18 @@ editIcons.forEach((icon) => {
 
         if (input !== null) {
             field.textContent = input;
-            saveProfileChanges(e.target.dataset.field, input);  // Save changes
+            saveProfileChanges(e.target.dataset.field, input);  // Save changes in the data base
         }
     });
 });
 
 // Save profile changes
-async function saveProfileChanges(field, value) {
-    const user = auth.currentUser;
+async function saveProfileChanges(field, value) { //updates the users profile in firestore and firebase
+    const user = auth.currentUser; //get the current loggend in users
     const userRef = doc(db, "user", user.uid);
 
     // Update Firestore based on the field being edited
-    const updates = {};
+    const updates = {}; //updates the user records
     updates[field] = value;
 
     await updateDoc(userRef, updates);
