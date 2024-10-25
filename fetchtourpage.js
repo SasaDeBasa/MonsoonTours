@@ -73,7 +73,7 @@ async function handleTourBooking(packageId) {
     });
 }
 
-// Function to book a tour
+// Function to book a tour -------------------------------------matt
 async function bookTour(user, packageId) {
     // Check for existing bookings for the same package
     const bookingsRef = collection(db, 'bookings');
