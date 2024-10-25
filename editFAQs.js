@@ -86,7 +86,7 @@ async function updateFAQ(faqId, updatedQuestion, updatedAnswer) {
 }
 
 // Handle form submission for updating the FAQ
-document.getElementById('addFaqForm').addEventListener('submit', function (event) {
+document.getElementById('addFaqForm').addEventListener('$submitbtn', function (event) {
     event.preventDefault();
 
     document.getElementById('saveChangesButton').addEventListener('submit', function(event){
