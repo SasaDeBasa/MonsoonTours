@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Tour - Monsoon Tours</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('assets/pics/Home.jpg') no-repeat center fixed;
+            background-color: #333;
+            color: white;
+        }
+        .section-dark {
+            margin-top: 100px;
+            padding: 50px 0; /* Reduced bottom padding for better mobile view */
+        }
+        .package-container {
+            display: flex;          /* Enables flexbox layout */
+            overflow-x: auto;      /* Enables horizontal scrolling */
+            padding: 20px;         /* Optional padding around the scroll area */
+            scroll-snap-type: x mandatory; /* Snap scrolling */
+        }
+        .package-card {
+            flex: 0 0 auto;        /* Prevents flex items from shrinking */
+            margin-right: 20px;    /* Spacing between cards */
+            scroll-snap-align: start; /* Snap alignment */
+        }
+        .package-card img {
+        width: 100%; /* Ensures the image takes up the full width of the card */
+        height: 200px; /* Set a fixed height for all images */
+        object-fit: cover; /* Ensures the image covers the space without distortion, cropping if necessary */
+        }
+        .package-card .card {
+        display: flex;
+        flex-direction: column;
+        }
+
+        .package-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .package-card .book-btn {
+            margin-top: auto; /* This pushes the button to the bottom of the card body */
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .package-card {
+                padding: 15px; /* Padding for mobile view */
+                min-width: 200px; /* Minimum width for cards */
+            }
+            h2 {
+                font-size: 1.5rem; /* Smaller heading on mobile */
+            }
+        }
+        #TourPageCard{
+            background-color: #312c2c89;
+        }
+        #bookTourbtn{
+            background-color: rgba(255, 136, 0, 0.53);
+            border: #828282;
+            transition: 0.3s;
+        }
+        #bookTourbtn:hover{
+            transition: 0.3s;
+            color: black;
+            background-color: rgba(255, 136, 0, 0.863);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" id="MTICON" href="Home.html">Monsoon Tours</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tour section -->
+    <div class="section-dark">
+        <div class="container">
+            <h2 class="mb-4 text-center">Tour Packages</h2>
+            <div class="package-container" id="packageContainer">
+                <!-- Cards will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="fetchtourpage.js" type="module"></script>
+
+    <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
+    
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: MonsoonTours@gmail.com</p>
+                <p>Phone: (+94) 76 199 4312</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#" class="social-media-link">Facebook</a>
+                <a href="#" class="social-media-link">Twitter</a>
+                <a href="#" class="social-media-link">Instagram</a>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="Home.html">Home</a>
+                <a href="Taxi.html">Taxi Services</a>
+                <a href="Tour.html">Tour Services</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="app.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

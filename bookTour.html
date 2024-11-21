@@ -1,104 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Contact Us - Monsoon Tours</title>
+    <title>Book a Tour - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Add Firebase JS SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="app_bookTour.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+    
+
     <style>
-        .sendMessageBtn {
+        .bookTourBtn {
             color: white;
+            border: 1px;
             background-color: rgba(255, 115, 0, 0.429);
             height: 40px;
             width: 120px;
             border-radius: 10px;
-            border: none;
         }
-
-        .sendMessageBtn:hover {
+        .bookTourBtn:hover {
             background-color: rgb(255, 98, 0);
             color: black;
         }
-
-        .contact-container {
-            margin-top: 50px;
-        }
-
-        .faq-section {
-            margin-top: 50px;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .faq-section h3 {
-            color: #ff7300;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-        }
-
-        .faq-item .faq-question {
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .faq-item .faq-answer {
-            padding-left: 20px;
-            display: none;
-        }
-
-        .footer-social-icons a {
-            margin-right: 10px;
-        }
-
-        .faq-item {
-            background-color: black;
-            border-radius: 5px;
-        }
-
-        .faq-item .card-header {
-            padding: 15px;
-        }
-
-        .faq-item .btn-link {
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .faq-item .btn-link:hover {
-            color: #ff7300;
-        }
-
-        .faq-item .card-body {
-            padding: 15px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .contact-info {
-                margin-top: 20px;
-            }
-
-            .contact-container .row {
-                flex-direction: column; /* Stack columns on mobile */
-            }
-
-            .sendMessageBtn {
-                width: 100%; /* Full width button on mobile */
-            }
-        }
-
     </style>
 </head>
-
 <body style="background: url('assets/pics/contact.jpg') no-repeat center center fixed; background-size: cover; color: white;">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -127,29 +59,27 @@
         </div>
     </nav>
 
-    <!-- Contact Form Section -->
-    <div class="container contact-container">
+    <!-- Book Tour Section -->
+    <div class="container contact-container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <h3>We're ready, Let's Talk</h3>
-                <form id="contactForm">
+                <h3>Find Tour Details</h3>
+                <!-- Changed form to call a JavaScript function on submit -->
+                <form id="bookTourForm">
+                    <input type="hidden" name="userId" value="user123"> <!-- Replace with actual user ID from session -->
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name" id="name" required>
+                        <label for="tourId">Tour ID:</label>
+                        <input type="text" class="form-control" name="tourId" id="tourId" placeholder="Enter Tour ID" required>
                     </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email Address" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5" placeholder="Message" id="message" required></textarea>
-                    </div>
-                    <button class="sendMessageBtn" type="submit">Send Message</button>
+                    <button class="bookTourBtn" type="submit">Get Details</button>
                 </form>
+                <div id="tourDetails"></div> <!-- Container to display tour details -->
             </div>
             <div class="col-md-6 contact-info">
                 <h3>Contact Info</h3>
                 <p><strong>Address:</strong> xxxxxxxxxxxxxxxxxxxxxx</p>
-                <p><strong>Email Us: </strong><a href="mailto:monsoontoursl@gmail.com">monsoontoursl@gmail.com</a></p>
-                <p><strong>Call Us:</strong> +94 76 199 4312 </p>
+                <p><strong>Email Us:</strong> xxxxxxxxxxx@gmail.com</p>
+                <p><strong>Call Us:</strong> xxx-xxx-xxxx</p>
                 <h5>Follow Us</h5>
                 <div class="footer-social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -159,16 +89,8 @@
             </div>
         </div>
     </div>
+  
 
-    <!-- FAQ Section -->
-    <div class="container faq-section mt-5">
-        <h3 style="color: white;">Frequently Asked Questions (FAQ)</h3>
-        <div class="accordion" id="faqAccordion">
-            <!-- FAQ items will be dynamically inserted here -->
-        </div>
-    </div>
-
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
@@ -198,30 +120,11 @@
             <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
         </div>
     </footer>
+   
+      
 
-    <!-- External Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init({
-                publicKey: "x5DF0-RSt3jTJ9Ytr",
-            });
-        })();
-    </script>
-
-    <!-- Import JavaScript file -->
-    <script src="app_contact.js" type="module"></script>
-    <script src="fetchFAQ.js" type="module"></script>
-    <script src="index.js" type="module"></script>
 </body>
-
 </html>

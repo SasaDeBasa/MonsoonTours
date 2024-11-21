@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Test with ExcelJS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+</head>
+<body>
+    <button id="downloadReportBtn">Download Report</button>
+
+    <script>
+        document.getElementById("downloadReportBtn").addEventListener("click", async function() {
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet('Vehicles');
+
+            // Add header row with styling
+            worksheet.addRow(["ID", "Make", "Model", "Year", "Passengers", "Availability"]).font = { bold: true };
+
+            // Add sample data rows
+            worksheet.addRow([1, "Toyota", "Corolla", 2020, 5, "Available"]);
+            worksheet.addRow([2, "Honda", "Civic", 2019, 5, "Not Available"]);
+
+            // Set borders for all cells
+            const borderStyle = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' },
+            };
+
+            worksheet.eachRow((row) => {
+                row.eachCell((cell) => {
+                    cell.border = borderStyle;
+                });
+            });
+
+            // Download the file
+            const buffer = await workbook.xlsx.writeBuffer();
+            const blob = new Blob([buffer], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'vehicle_report.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    </script>
+</body>
+</html>
+
+

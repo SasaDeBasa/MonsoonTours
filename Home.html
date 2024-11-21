@@ -3,202 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
     <title>HomePage - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
-       body {
-            background-color: #333;
+        .bookBtn {
             color: white;
+            border: 1px;
+            background-color: rgba(255, 115, 0, 0.429);
+            height: 40px;
+            width: 120px;
+            border-radius: 10px;
         }
 
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
+        .bookBtn:hover {
+            background-color: rgb(255, 98, 0);
+            color: black;
         }
-
-        .navbar-brand {
-            font-weight: bold;
-        }
-
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-size: 18px;
-        }
-
+        /* Responsive Styles */
+    @media (max-width: 768px) {
         .hero-section {
-            background: url('assets/pics/hero.jpg') no-repeat center center fixed;
-            background-size: cover;
-            height: 70vh;
+            padding: 2rem 1rem; /* Reduce padding for mobile */
+            margin-top: 56px; /* Maintain space from navbar */
+        }
+        .hero-title {
+            font-size: 1.8rem; /* Reduce font size for mobile */
+        }
+        .hero-subtitle {
+            font-size: 1rem; /* Reduce font size for mobile */
+            width: 90%; /* Adjust width for mobile */
+        }
+        .misc-image {
+            width: 100%; /* Make images responsive */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 250px; /* Limit maximum width */
+            border-radius: 10px; /* Maintain border radius */
+        }
+        .misc-imgcontainer {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
+            flex-direction: column; /* Stack images on smaller screens */
+            align-items: center; /* Center images */
+            gap: 1rem; /* Add space between images */
         }
-
-        .hero-section .content {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 40px;
-            border-radius: 10px;
+        .misc-description {
+            font-size: 0.9rem; /* Reduce font size for mobile */
         }
-
-        .section-dark {
-            background-color: #222;
-            padding: 60px 0;
-        }
-
-        .itinerary-card {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            margin-right: 20px; /* Space between cards */
-            color: white;
-            flex: 0 0 auto; /* Ensure each card takes up its space */
-        }
-
-        /* Itinerary Section */
-        .itinerary-wrapper {
-            overflow-x: auto;
-            overflow-y: hidden; /* Hide vertical scroll */
-            position: relative;
-            white-space: nowrap; /* Prevent wrapping of the cards */
-        }
-
-        /* Scrollbar Styles */
-        .itinerary-wrapper::-webkit-scrollbar {
-            height: 8px; /* Adjust height of scrollbar */
-        }
-
-        .itinerary-wrapper::-webkit-scrollbar-thumb {
-            background-color: #555; /* Dark color for the scrollbar */
-            border-radius: 4px;
-        }
-
-        .itinerary-wrapper::-webkit-scrollbar-track {
-            background: #333; /* Dark background for the scrollbar track */
-        }
-
-        .events-section {
-            background-color: #333;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .events-section h2 {
-            margin-bottom: 40px;
-        }
-
+    }
     </style>
+
 </head>
-<body>
-    <!-- Navigation Bar -->
+<body style="background: url('assets/pics/Home.jpg') no-repeat center fixed;background-color: #333;color: white;">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Monsoon Tours</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
+            <a class="navbar-brand" id="MTICON" href="Home.html">Monsoon Tours</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="#" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-section">
+    <div class="hero-section" style="padding: 3rem 2rem; margin-top: 56px;"> <!-- Keep margin-top to separate from navbar -->
         <div class="content">
-            <h1>Want to go on a Tour?</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            <h1 class="hero-title">Discover Your Next Adventure</h1>
+            <h7 class="hero-subtitle">
+                Join Monsoon Tours to explore stunning global destinations with itineraries that blend adventure, culture, and relaxation tailored for you.</h7>
+            <div class="text-center" style="padding-top: 20px;">
+            </div>
         </div>
     </div>
     <!-- Itinerary section -->
-    <div class="section-dark">
+    <div style="border-style:ridge; border-color:rgba(255, 255, 255, 0.162);" class="section-dark">
         <div class="container">
-            <div class="itinerary-wrapper">
+            <h2 style="padding-bottom: 20px; text-align: center;">Our Packages</h2>
+            <div class="itinerary-wrapper d-flex justify-content-center">
                 <div class="row flex-row flex-nowrap overflow-auto" id="itinerary-container">
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="itinerary-card">
-                            <h5>Itinerary #1</h5>
-                            <p>Duration: xxxxx</p>
-                            <p>Days: xxxxx</p>
-                            <p>No. of Locations: xxxxx</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="itinerary-card">
-                            <h5>Itinerary #2</h5>
-                            <p>Duration: xxxxx</p>
-                            <p>Days: xxxxx</p>
-                            <p>No. of Locations: xxxxx</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="itinerary-card">
-                            <h5>Itinerary #3</h5>
-                            <p>Duration: xxxxx</p>
-                            <p>Days: xxxxx</p>
-                            <p>No. of Locations: xxxxx</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="itinerary-card">
-                            <h5>Itinerary #4</h5>
-                            <p>Duration: xxxxx</p>
-                            <p>Days: xxxxx</p>
-                            <p>No. of Locations: xxxxx</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="itinerary-card">
-                            <h5>Itinerary #5</h5>
-                            <p>Duration: xxxxx</p>
-                            <p>Days: xxxxx</p>
-                            <p>No. of Locations: xxxxx</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="itinerary-card">
-                            <h5>Itinerary #6</h5>
-                            <p>Duration: xxxxx</p>
-                            <p>Days: xxxxx</p>
-                            <p>No. of Locations: xxxxx</p>
-                        </div>
-                    </div>
+                    <!-- Itinerary Cards will be dynamically added here -->
                 </div>
             </div>
         </div>
     </div>
+    
+    
 
+    <script src="fetchhometours.js" type="module"></script>
 
-    <!-- Events Section -->
+    <!--Upcoming Events Section -->
     <div class="events-section">
         <div class="container">
             <h2>Upcoming Events</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="event-card">
-                        <img src="assets/pics/event1.jpg" class="img-fluid" alt="Event 1">
-                        <p>Lorem Ipsum is simply dummy text of the printing industry.</p>
+                        <img style="height: 250px; border-radius: 15px;" src="assets/dummypics/DJ-AGAIN.jpg" class="img-fluid" alt="Event 1">
+                        <p>Savor the world’s flavors on our exclusive culinary tour!</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="event-card">
-                        <img src="assets/pics/event2.jpg" class="img-fluid" alt="Event 2">
-                        <p>Lorem Ipsum is simply dummy text of the printing industry.</p>
+                        <img style="height: 250px; border-radius: 15px;" src="assets/dummypics/thumb-1920-250085.jpg" class="img-fluid" alt="Event 2">
+                        <p>Join our thrilling guided hiking expedition through stunning landscapes!</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- Miscellaneous Section -->
+    <div class="miscellanous">
+        <div class="misc-container">
+            <div class="section-dark" style="border-radius: 10px;">
+                <div class="misc-text-wrapper">
+                    <h6 class="misc-description">Discover the magic of travel with our past tour stories and photos, showcasing vibrant cultures and breathtaking landscapes to inspire your next adventure with Monsoon Tours!</h6>
+                </div>
+            </div>
+        </div>
 
+        <div class="misc-imgcontainer">
+            <div class="misc-image-wrapper">
+                <img class="misc-image" src="assets/dummypics/merlin_148552275_74c0d250-949c-46e0-b8a1-e6d499e992cf-superJumbo.jpg" alt="Travel Image 1">
+            </div>  
+            <div class="misc-image-wrapper">
+                <img class="misc-image" src="assets/dummypics/Nuwara-Eliya.jpg" alt="Travel Image 2">
+            </div>
+            <div class="misc-image-wrapper">
+                <img class="misc-image" src="assets/dummypics/Nuwara-Eliya.jpg" alt="Travel Image 3">
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/94761994312" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
+    
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: MonsoonTours@gmail.com</p>
+                <p>Phone: (+94) 76 199 4312</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#" class="social-media-link">Facebook</a>
+                <a href="#" class="social-media-link">Twitter</a>
+                <a href="#" class="social-media-link">Instagram</a>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="Home.html">Home</a>
+                <a href="Taxi.html">Taxi Services</a>
+                <a href="Tour.html">Tour Services</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Monsoon Tours pvt(ltd). All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="app.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCOm3GlA2_UgZhhHD_zDU9BRFwLnOLueEA",
+          authDomain: "monsoontours-65f1e.firebaseapp.com",
+          projectId: "monsoontours-65f1e",
+          storageBucket: "monsoontours-65f1e.appspot.com",
+          messagingSenderId: "378330088807",
+          appId: "1:378330088807:web:217c00702fc17fea671bc2",
+          measurementId: "G-L4V5MLH9KD"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script> -->
 </body>
 </html>

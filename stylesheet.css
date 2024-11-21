@@ -1,0 +1,394 @@
+#MTICON:hover{
+    color: #ff8000bb;
+}
+/* Navbar */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('assets/pics/hero.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-section .content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+/* Section Dark */
+.section-dark {
+    background-color: #0000009b;
+    padding: 60px 0;
+}
+
+/* Itinerary Section */
+.itinerary-wrapper {
+    overflow-x: hidden;
+    overflow-y: hidden; /* Hide vertical scroll */
+    position: relative;
+    white-space: nowrap; /* Prevent wrapping of the cards */
+}
+
+.itinerary-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px; /* Space between cards */
+    color: white;
+    flex: 0 0 auto; /* Ensure each card takes up its space */
+}
+
+/* Events Section */
+.events-section {
+    background-color: #000000c5;
+    padding: 75px 0px;
+    text-align: center;
+}
+
+.events-section h2 {
+    margin-bottom: 40px;
+}
+
+/* Misc Section */
+.miscellanous{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.misc-section {
+    margin-top: 30px;
+    background-color: #00000000;
+   
+    text-align: left;
+}
+
+.misc-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.misc-imgcontainer{
+    max-width: 50%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+.misc-image-wrapper img {
+    max-width: 100%; /* Adjust the size of the image as needed */
+    height: auto;
+}
+
+.misc-image-wrapper:nth-child(3) img{
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.misc-image-wrapper:nth-child(3) {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center; 
+}
+.pagemeow{
+    padding-left: 50px;
+}
+.misc-text-wrapper {
+    flex: 1; /* Allows the text to take up the remaining space */
+    margin-left: 30px; /* Adds space between the image and the text */
+    margin-right: 30px;
+}
+
+/* Contact Container */
+.contact-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.container-tour.package-card {
+    margin-bottom: 20px;
+    background-color: #000;
+}
+.container-tour.package-card img {
+    height: 200px;
+    object-fit: cover;
+}
+.container-tour.card-description {
+    height: 80px;
+    overflow: hidden;
+}
+
+/* Login Container */
+.login-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #007bff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 350px;
+    margin: auto;
+    margin-top: 100px;
+    position: relative; /* Ensure it's on top of the blurred overlay */
+    z-index: 1;
+}
+
+/* Profile Container */
+.profile-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 50px;
+    color: white;
+}
+
+#ProfileUser{
+    width: 100px;
+    filter: invert(100%);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-header .profile-icon {
+    margin-right: 15px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.edit-icon {
+    color: #f58220;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Form Control and Buttons */
+.form-control, .btn {
+    border-radius: 0;
+}
+
+.btn-custom {
+    background-color: #f58220;
+    color: white;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #e67300;
+}
+
+.btn-login {
+    background-color: #333;
+    color: white;
+    border-radius: 0;
+    width: 100%;
+}
+
+.btn-login:hover {
+    background-color: #444;
+}
+
+/* Social Icons */
+.footer-social-icons i {
+    color: white;
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+#status{
+    background-color: #f58220;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+#HistoryTable{
+    justify-content: center;
+    align-items: center;
+}
+
+#HistoryRow{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#HistoryRow:hover{
+    background-color: rgba(134, 134, 134, 0.566);
+}
+
+#HistoryRow td{
+    color: white;
+    font-weight: bold;
+}
+
+
+
+#dustbin{
+    color: gray;
+}
+
+#dustbin:hover{
+    color: #e67300;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Transparent Button */
+.transparent-button {
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0); /* Makes the background transparent */
+    border: none; /* Optional: a border for the button */
+    color: #0000001b; /* Text color */
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.3s ease;
+    margin-right: 20px;
+}
+
+.transparent-button:hover {
+    background-color: #000; /* Changes the background color on hover */
+    color: #000000; /* Changes the text color on hover */
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px; /* Adjust the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Transparent background for the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    border: 3px solid transparent; /* Add space around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly less transparent on hover */
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin; /* Makes the scrollbar thinner */
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* Thumb color and track color */
+}
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Moved to the right side */
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.whatsapp-icon {
+    font-size: 30px;
+    color: white; /* White icon for contrast */
+}
+
+.whatsapp-button:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+@media (max-width: 768px) {
+    .whatsapp-button {
+        padding: 10px;
+    }
+
+    .whatsapp-icon {
+        font-size: 24px;
+    }
+}
+
+.site-footer {
+    background-color: #000000c5;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    margin: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+}
+
+.footer-section a:hover {
+    text-decoration: none;
+    color: #444;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
+#dustbin{
+
+}
+
+#dustbin:hover{
+    color: ;
+}

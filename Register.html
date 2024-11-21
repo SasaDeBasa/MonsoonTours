@@ -4,176 +4,208 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
     <title>Register - Monsoon Tours</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            background: url('assets/pics/pic4.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            overflow: hidden;
-        }
         .blur-overlay {
-            backdrop-filter: blur(10px); /* Adjust the blur intensity here */
+            backdrop-filter: blur(10px);
             width: 100%;
             height: 100%;
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 0; /* Keep it behind other elements */
         }
+
         .navbar {
+            width: 100%;
             background-color: rgba(0, 0, 0, 0.7);
         }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-size: 18px;
-        }
+
         .login-container {
             background-color: rgba(0, 0, 0, 0.5);
-            border: 2px solid #007bff;
+            border: 2px solid #ffffff68;
             padding: 40px;
             border-radius: 10px;
             width: 350px;
             margin: auto;
-            margin-top: 50px;
-            position: relative; /* Ensure it's on top of the blurred overlay */
-            z-index: 1;
+            position: relative;
+            z-index: 1; /* Bring it above the blur */
         }
+
         .form-control {
-            border-radius: 0;
+            border-radius: 10px;
+            padding: 10px;
         }
+
         .btn-login {
             background-color: #333;
             color: white;
-            border-radius: 0;
+            border-radius: 5px;
             width: 100%;
+            transition: transform 0.2s, background-color 0.3s;
         }
+
         .btn-login:hover {
-            background-color: #444;
+            background-color: #8181819c;
+            transform: scale(1.05);
         }
+
         .social-login {
             display: flex;
             align-items: center;
             justify-content: center;
             margin-top: 10px;
         }
+
         .social-login img {
             width: 20px;
             height: 20px;
             margin-right: 5px;
         }
+
         .text-link {
             color: #007bff;
         }
+
         .text-link:hover {
             text-decoration: underline;
         }
 
-        /* Webkit-based browsers (Chrome, Safari, Edge) */
         ::-webkit-scrollbar {
-            width: 12px; /* You can adjust the width of the scrollbar */
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
-            background: transparent; /* Transparent background for the scrollbar track */
+            background: transparent;
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.5); /* Transparent scrollbar thumb */
-            border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-            border: 3px solid transparent; /* Add space around the thumb */
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: 3px solid transparent;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(255, 255, 255, 0.7); /* Slightly less transparent on hover */
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Firefox */
         * {
-            scrollbar-width: thin; /* Makes the scrollbar thinner */
-            scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* Thumb color and track color */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        }
+
+        body {
+            background: url('assets/pics/pic4.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            overflow-y: auto; /* Allow vertical scrolling */
+            height: 100vh; /* Full height to enable scrollbar */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+        }
+
+        /* Adjustments to prevent bottom part from being cut off */
+        .d-flex {
+            flex: 1; /* Allow flex to fill available space */
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* Add some margin */
+            margin-bottom: 20px; /* Add some margin */
         }
     </style>
 </head>
 <body>
-   <!-- Blurred Background Overlay -->
-   <div class="blur-overlay"></div>
+    <!-- Blurred Background Overlay -->
+    <div class="blur-overlay" style="height: 150vh;"></div>
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Monsoon Tours</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Taxi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
+            <a class="navbar-brand" id="MTICON" href="Home.html">Monsoon Tours</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="#" class="nav-link ml-auto"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto"> <!-- Move ml-auto here -->
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Home.html">Home</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Tour.html">Tour</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button"><a class="nav-link" href="Contact.html">Contact</a></button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="transparent-button">
+                            <a href="Profile.html" class="nav-link"><i class="fas fa-user-circle" style="font-size: 24px; color: white;"></i></a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-<!-- Login Form Container -->
-<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="login-container">
-        <h3 class="text-center mb-4">Register</h3>
-        <form>
-            <!-- Username-->
-            <div class="form-group">
-                <label for="username" class="d-flex align-items-center"><i class="fas fa-user mr-2"></i>Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Type your Username">
-            </div>
-            
-            <!-- Contact -->
-            <div class="form-group">
-                <label for="Contact" class="d-flex align-items-center"><i class="fas fa-phone mr-2"></i>Contact</label>
-                <input type="text" class="form-control" id="Contact" placeholder="Type your Contact">
-            </div>
 
-            <!-- Email -->
-            <div class="form-group">
-                <label for="Email" class="d-flex align-items-center"><i class="fas fa-envelope mr-2"></i>Email</label>
-                <input type="text" class="form-control" id="Email" placeholder="Type your Email">
-            </div>
-            
-            <!-- Password -->
-            <div class="form-group">
-                <label for="password" class="d-flex align-items-center"><i class="fas fa-lock mr-2"></i>Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Type your password">
-                <small class="form-text text-right"><a href="#" class="text-link">Forgot password?</a></small>
-            </div>
-            
-            <!-- Login Button -->
-            <button type="submit" class="btn btn-login mt-3">Register</button>
-            
-            <!-- Or Divider -->
-            <div class="text-center mt-3">or</div>
-            
-            <!-- Social Login -->
-            <div class="social-login">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Icon">
-                <a href="#" class="text-link">Sign up with Google</a>
-            </div>
-            
-            <!-- Sign Up Link -->
-            <div class="text-center mt-2">
-                Already have an account? <a href="#" class="text-link">Log In</a>
-            </div>
-        </form>
+    <!-- Registration Form Container -->
+    <div class="d-flex">
+        <div class="login-container">
+            <h3 class="text-center mb-4">Register</h3>
+            <form id="registrationForm">
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="username" class="d-flex align-items-center"><i class="fas fa-user mr-2"></i>Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Type your Username" required>
+                </div>
+
+                <!-- Contact -->
+                <div class="form-group">
+                    <label for="contact" class="d-flex align-items-center"><i class="fas fa-phone mr-2"></i>Contact</label>
+                    <input type="text" class="form-control" id="contact" placeholder="Type your Contact" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="d-flex align-items-center"><i class="fas fa-envelope mr-2"></i>Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Type your Email" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password" class="d-flex align-items-center"><i class="fas fa-lock mr-2"></i>Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Type your password" required>
+                    <small class="form-text text-right"><a href="#" class="text-link">Forgot password?</a></small>
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="btn btn-login mt-3">Register</button>
+
+                <!-- Or Divider -->
+                <div class="text-center mt-3">or</div>
+
+                <!-- Social Login -->
+                <div class="social-login">
+                    <img src="assets/icons/square-g_10455420.svg" style="filter: invert(100%);" alt="Google Icon">
+                    <a href="#" class="text-link">Sign up with Google</a>
+                </div>
+
+                <!-- Login Link -->
+                <div class="text-center mt-2">
+                    Already have an account? <a href="Login.html" class="text-link">Log In</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="app_register.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
